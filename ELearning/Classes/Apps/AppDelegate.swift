@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -40,7 +39,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func showMainViewStudent() {
+        if let sb = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainVC {
+            self.window?.rootViewController = sb
+        }
+    }
+    
+    func showMainViewAdmin() {
+//        if let sb = UIStoryboard(name: "MainAdmin", bundle: nil).instantiateViewController(withIdentifier: "MainAdminVC") as? MainVC {
+//            self.window?.rootViewController = sb
+//        }
+    }
+    
+    func showSignInView() {
+        if let sb = UIStoryboard(name: "SignInUp", bundle: nil).instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+            self.window?.rootViewController = sb
+        }
+    }
+    
+    func showSignUpView(){
+        if let sb = UIStoryboard(name: "SignInUp", bundle: nil).instantiateViewController(withIdentifier: "SignUpVC") as? SignUpVC {
+            self.window?.rootViewController = sb
+        }
+    }
+    
+    func signIn_Up(user: UserObject) {
+        UserManager.shared.currentUser = user
+        
+        //set token to NSUserDefault & UserNetwork
+        UserManager.shared.setToken(user.token)
+        
+        switch user.role ?? userRole.student {
+        case .teacher:
+            showMainViewAdmin()
+        case .student:
+            showMainViewStudent()
+        }
 
-
+    }
+    
+    func signOut() {
+        UserManager.shared.signOut()
+        showSignInView()
+    }
 }
 

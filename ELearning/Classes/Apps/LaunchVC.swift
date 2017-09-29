@@ -13,7 +13,48 @@ class LaunchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if UserManager.shared.isLoggedIn() {
+                
+                //verify token
+                UserManager.shared.verifyToken({ (user, error) in
+                    
+                    if let _ = error {
+                        appDelegate.showSignInView()
+                        return
+                    }
+                    
+                    guard let user = user else {
+                        print("User not found")
+                        appDelegate.showSignInView()
+                        return
+                    }
+                    
+                    guard let token = user.token else {
+                        print("Token not found")
+                        appDelegate.showSignInView()
+                        return
+                    }
+                    
+                    //set token
+                    UserManager.shared.setToken(token)
+                    
+                    //check role
+                    switch user.role ?? userRole.student {
+                    case .student:
+                        appDelegate.showMainViewAdmin()
+                    case .teacher:
+                        appDelegate.showMainViewStudent()
+                    }
+                    
+                })
+                
+                //show main view
+            } else {
+                appDelegate.showSignInView()
+            }
+        }
+        
     }
 }
-    
+
