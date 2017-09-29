@@ -32,7 +32,7 @@ class UserObject: NSObject, Decodable {
         self.email = email
         self.password = "password" <~~ json ?? ""
         self.fullname = "fullname" <~~ json ?? ""
-        self.dob = "dob" <~~ json ?? ""
+        self.dob = "birthdate" <~~ json ?? ""
         //self.role = userRole(rawValue: "role" <~~ json ?? "student")
         self.role = "role" <~~ json
         

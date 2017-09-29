@@ -19,7 +19,8 @@ class LaunchVC: UIViewController {
                 //verify token
                 UserManager.shared.verifyToken({ (user, error) in
                     
-                    if let _ = error {
+                    if let error = error {
+                        print(error)
                         appDelegate.showSignInView()
                         return
                     }

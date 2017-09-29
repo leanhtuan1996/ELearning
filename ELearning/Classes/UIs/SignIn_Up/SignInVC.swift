@@ -92,12 +92,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                 self.showAlert(error, title: "Sign In Error", buttons: nil)
                 return
             }
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                switch user?.role ?? userRole.student {
-                case .student:
-                    appDelegate.showMainViewStudent()
-                case .teacher:
-                    appDelegate.showMainViewAdmin()
+            
+            if let user = user {
+                
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.signIn_Up(user: user)
                 }
             }
         }

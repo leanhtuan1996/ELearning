@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G1023" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -255,7 +255,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8se-Tn-w1U" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="859"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="879"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJ4-xc-yMH">
                                                 <rect key="frame" x="148.5" y="60" width="78" height="24"/>
@@ -275,7 +275,7 @@
                                                     <outlet property="delegate" destination="uYt-YZ-baB" id="v1g-5u-6vF"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zZC-oA-367">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zZC-oA-367">
                                                 <rect key="frame" x="20" y="189" width="335" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="V3T-YU-2rE"/>
@@ -296,7 +296,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W0t-nC-YD1">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W0t-nC-YD1">
                                                 <rect key="frame" x="20" y="259" width="335" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="bMl-qE-sdb"/>
@@ -327,7 +327,7 @@
                                                 <rect key="frame" x="20" y="329" width="335" height="45"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="uYt-YZ-baB" id="whl-tu-0kv"/>
                                                 </connections>
@@ -336,7 +336,7 @@
                                                 <rect key="frame" x="20" y="399" width="335" height="45"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="uYt-YZ-baB" id="70P-6u-4Bd"/>
                                                 </connections>
@@ -375,7 +375,7 @@
                                             <constraint firstItem="yJ4-xc-yMH" firstAttribute="centerX" secondItem="8se-Tn-w1U" secondAttribute="centerX" id="c6d-fw-i6r"/>
                                             <constraint firstItem="2Mf-Vt-yFh" firstAttribute="top" secondItem="LzT-f1-3Hz" secondAttribute="bottom" constant="30" id="dkT-M2-bQu"/>
                                             <constraint firstItem="W0t-nC-YD1" firstAttribute="top" secondItem="zZC-oA-367" secondAttribute="bottom" constant="25" id="eGO-rd-4cf"/>
-                                            <constraint firstAttribute="bottom" secondItem="oj9-Bl-rgc" secondAttribute="bottom" constant="210" id="efB-99-Dh4"/>
+                                            <constraint firstAttribute="bottom" secondItem="oj9-Bl-rgc" secondAttribute="bottom" constant="230" id="efB-99-Dh4"/>
                                             <constraint firstItem="nfF-TP-LDW" firstAttribute="top" secondItem="iiE-RT-jgf" secondAttribute="bottom" constant="25" id="gAv-AH-7lI"/>
                                             <constraint firstAttribute="trailing" secondItem="LzT-f1-3Hz" secondAttribute="trailing" constant="20" id="jEl-xO-kzg"/>
                                             <constraint firstItem="iiE-RT-jgf" firstAttribute="top" secondItem="W0t-nC-YD1" secondAttribute="bottom" constant="25" id="jQG-9s-OcN"/>
