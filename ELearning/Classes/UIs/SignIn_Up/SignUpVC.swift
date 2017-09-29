@@ -23,68 +23,62 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let arrayTextFields: [UITextField] = [txtEmail, txtPassword, txtRetypePassword, txtFullName, txtDob]
+        let arrayButtons: [UIButton] = [btnSignIn, btnSignUp]
+        
+        setUpUIs(uiTextFields: arrayTextFields, uiButtons: arrayButtons)
 
         //Email textfield
-        txtEmail.layer.borderColor = UIColor.white.cgColor
-        txtEmail.layer.borderWidth = 1
-        txtEmail.layer.cornerRadius = 5
-        txtEmail.backgroundColor = UIColor.clear
         txtEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtEmail.textColor = UIColor.white
         txtEmail.tag = 1
         txtEmail.keyboardType = .emailAddress
         txtEmail.becomeFirstResponder()
         
         //Password textfield
-        txtPassword.layer.borderColor = UIColor.white.cgColor
-        txtPassword.layer.borderWidth = 1
-        txtPassword.layer.cornerRadius = 5
-        txtPassword.backgroundColor = UIColor.clear
         txtPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtPassword.textColor = UIColor.white
         txtPassword.tag = 2
         txtPassword.isSecureTextEntry = true
 
         
         //RetypePassword textfield
-        txtRetypePassword.layer.borderColor = UIColor.white.cgColor
-        txtRetypePassword.layer.borderWidth = 1
-        txtRetypePassword.layer.cornerRadius = 5
-        txtRetypePassword.backgroundColor = UIColor.clear
+       
         txtRetypePassword.attributedPlaceholder =
             NSAttributedString(string: "Retype Password", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtRetypePassword.textColor = UIColor.white
         txtRetypePassword.tag = 3
         txtRetypePassword.isSecureTextEntry = true
 
         
         //FullName textfield
-        txtFullName.layer.borderColor = UIColor.white.cgColor
-        txtFullName.layer.borderWidth = 1
-        txtFullName.layer.cornerRadius = 5
-        txtFullName.backgroundColor = UIColor.clear
+       
         txtFullName.attributedPlaceholder =
             NSAttributedString(string: "Full Name", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtFullName.textColor = UIColor.white
         txtFullName.tag = 4
 
         
         //Dob textfield
-        txtDob.layer.borderColor = UIColor.white.cgColor
-        txtDob.layer.borderWidth = 1
-        txtDob.layer.cornerRadius = 5
-        txtDob.backgroundColor = UIColor.clear
         txtDob.attributedPlaceholder =
-            NSAttributedString(string: "Day of Birth", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtDob.textColor = UIColor.white
+            NSAttributedString(string: "Day of Birth (MM/dd/yyyy)", attributes: [NSForegroundColorAttributeName : UIColor.white])
         txtDob.tag = 5
+        txtDob.returnKeyType = .done
+    }
+    
+    func setUpUIs(uiTextFields: [UITextField]?, uiButtons: [UIButton]?) {
+        if let arrayTextFields = uiTextFields {
+            for textFields in arrayTextFields {
+                textFields.layer.borderColor = UIColor.white.cgColor
+                textFields.layer.borderWidth = 1
+                textFields.layer.cornerRadius = 5
+                textFields.backgroundColor = UIColor.clear
+                textFields.textColor = UIColor.white
+            }
+        }
         
-        //Sign In button
-        btnSignIn.layer.cornerRadius = 10
-        
-        //Sign Up button
-        btnSignUp.layer.cornerRadius = 10
-        
+        if let arrayUIButton = uiButtons {
+            for button in arrayUIButton {
+                button.layer.cornerRadius = 10
+            }
+        }
     }
     
     // MARK: - DELEGATE UITEXTFIELDS
@@ -100,12 +94,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     func signUp() {
-        if !(txtEmail.hasText && txtPassword.hasText) {
+        if !(txtEmail.hasText && txtPassword.hasText && txtRetypePassword.hasText && txtDob.hasText && txtFullName.hasText) {
             self.showAlert("Fields are required", title: "Please fill all fields are required!", buttons: nil)
             return
         }
         
-        guard let email = txtEmail.text, let password = txtPassword.text, let retypePassword = txtRetypePassword.text else {
+        guard let email = txtEmail.text, let password = txtPassword.text, let retypePassword = txtRetypePassword.text, let dob = txtDob.text, let fullname = txtFullName.text else {
             self.showAlert("Fields are required", title: "Please fill all fields are required!", buttons: nil)
             return
         }
@@ -115,10 +109,17 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             return
         }
         
+        if !dob.isValidDate() {
+            self.showAlert("Day of birth invalid format", title: "Invalid format", buttons: nil)
+            return
+        }
+        
         activityIndicatorView.showLoadingDialog(self)
         let userObject = UserObject()
         userObject.email = email
         userObject.password = password
+        userObject.dob = dob
+        userObject.fullname = fullname
         UserServices.shared.signUp(with: userObject) { (user, error) in
             self.activityIndicatorView.stopAnimating()
             if let error = error {

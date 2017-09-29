@@ -22,5 +22,16 @@ extension String {
             return ""
         }
     }
+    
+    
+    func isValidDate() -> Bool {
+        let formater = DateFormatter()
+        formater.dateFormat = "MM/dd/yyyy"
+        
+        if let _ = formater.date(from: self) {
+            return true
+        }
+        return false
+    }
 }
 
