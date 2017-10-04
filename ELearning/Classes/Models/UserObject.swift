@@ -14,11 +14,11 @@ enum userRole: String {
     case student = "student"
 }
 
-class UserObject: NSObject, Decodable {
-    var email: String = ""
-    var password: String = ""
-    var fullname: String = ""
-    var dob: String = ""
+class UserObject: NSObject, Glossy {
+    var email: String?
+    var password: String?
+    var fullname: String?
+    var dob: String?
     var token: String?
     var role: userRole?
     
@@ -30,11 +30,24 @@ class UserObject: NSObject, Decodable {
         }
         
         self.email = email
-        self.password = "password" <~~ json ?? ""
-        self.fullname = "fullname" <~~ json ?? ""
-        self.dob = "birthdate" <~~ json ?? ""
-        //self.role = userRole(rawValue: "role" <~~ json ?? "student")
-        self.role = "role" <~~ json
+        self.password = "password" <~~ json
+        self.fullname = "fullname" <~~ json
+        self.dob = "birthdate" <~~ json
+        if let role: String = "role" <~~ json {
+            self.role = userRole(rawValue: role)
+        }
         
+        
+        
+    }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            "email" ~~> self.email,
+            "password" ~~> self.password,
+            "fullname" ~~> self.fullname,
+            "birthday" ~~> self.dob,
+            "role" ~~> self.role?.rawValue
+            ])
     }
 }

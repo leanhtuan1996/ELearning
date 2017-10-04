@@ -1,14 +1,14 @@
 //
-//  MainVC.swift
+//  TeacherMainVC.swift
 //  ELearning
 //
-//  Created by Lê Anh Tuấn on 9/29/17.
+//  Created by Lê Anh Tuấn on 10/4/17.
 //  Copyright © 2017 Lê Anh Tuấn. All rights reserved.
 //
 
 import UIKit
 
-class MainVC: UIViewController {
+class TeacherMainVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +27,5 @@ class MainVC: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -46,10 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func showMainViewAdmin() {
-//        if let sb = UIStoryboard(name: "MainAdmin", bundle: nil).instantiateViewController(withIdentifier: "MainAdminVC") as? MainVC {
-//            self.window?.rootViewController = sb
-//        }
+    func showMainViewTeacher() {
+        if let sb = UIStoryboard(name: "Teacher", bundle: nil).instantiateViewController(withIdentifier: "TeacherMainVC") as? TeacherMainVC {
+            self.window?.rootViewController = sb
+        }
     }
     
     func showSignInView() {
@@ -72,11 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         switch user.role ?? userRole.student {
         case .teacher:
-            showMainViewAdmin()
+            showMainViewTeacher()
         case .student:
             showMainViewStudent()
         }
-
     }
     
     func signOut() {

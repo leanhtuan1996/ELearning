@@ -46,20 +46,14 @@ class UserManager: NSObject {
     
     func verifyToken(_ completionHandler: @escaping(_ user: UserObject?, _ error: String?) -> Void) {
         if let token = userDefaults.object(forKey: "token") as? String {
-            //authToken = token
+            authToken = token
             UserServices.shared.getInformations({ (user, error) in
                 if let error = error {
                     return completionHandler(nil, error)
                 }
                 if let user = user {
-                    user.token = token
-                    if user.email.hasPrefix("admin") {
-                        user.role = userRole.teacher
-                        return completionHandler(user, nil)
-                    } else {
-                        user.role = userRole.student
-                        return completionHandler(user, nil)
-                    }
+                   self.setToken(token)
+                   return completionHandler(user, nil)
                 }
             })
         } else {

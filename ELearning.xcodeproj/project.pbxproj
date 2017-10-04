@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		36001AE41F8484400031A1EE /* TeacherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AE31F8484400031A1EE /* TeacherRouter.swift */; };
+		36001AE61F8487A20031A1EE /* StudentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AE51F8487A20031A1EE /* StudentRouter.swift */; };
+		36001AE81F848AEF0031A1EE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36001AE71F848AEF0031A1EE /* Teacher.storyboard */; };
+		36001AEB1F848FFF0031A1EE /* TeacherMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AEA1F848FFF0031A1EE /* TeacherMainVC.swift */; };
 		367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */; };
 		367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */; };
 		367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423151F7E0A0700BBCD88 /* SignInUp.storyboard */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		36001AE31F8484400031A1EE /* TeacherRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherRouter.swift; sourceTree = "<group>"; };
+		36001AE51F8487A20031A1EE /* StudentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRouter.swift; sourceTree = "<group>"; };
+		36001AE71F848AEF0031A1EE /* Teacher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = "<group>"; };
+		36001AEA1F848FFF0031A1EE /* TeacherMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherMainVC.swift; sourceTree = "<group>"; };
 		367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIViewController.swift"; sourceTree = "<group>"; };
 		367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		367423151F7E0A0700BBCD88 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
@@ -86,6 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		36001AE91F848FE00031A1EE /* Teacher */ = {
+			isa = PBXGroup;
+			children = (
+				36001AEA1F848FFF0031A1EE /* TeacherMainVC.swift */,
+			);
+			path = Teacher;
+			sourceTree = "<group>";
+		};
 		362146B91F7DDC1700D8F7F4 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +112,7 @@
 		362146BA1F7DDC2200D8F7F4 /* UIs */ = {
 			isa = PBXGroup;
 			children = (
+				36001AE91F848FE00031A1EE /* Teacher */,
 				368231261F7DE44500AC2995 /* SignIn_Up */,
 				368231411F7DF50F00AC2995 /* MainVC.swift */,
 			);
@@ -109,6 +124,7 @@
 			children = (
 				3682311F1F7DE3BB00AC2995 /* UserRouter.swift */,
 				36001AE31F8484400031A1EE /* TeacherRouter.swift */,
+				36001AE51F8487A20031A1EE /* StudentRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -212,6 +228,7 @@
 				367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */,
 				367423151F7E0A0700BBCD88 /* SignInUp.storyboard */,
 				36B2CD8C1F7DDCF200AAE83A /* Main.storyboard */,
+				36001AE71F848AEF0031A1EE /* Teacher.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -314,6 +331,7 @@
 			files = (
 				367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */,
 				36B2CD8D1F7DDCF200AAE83A /* Main.storyboard in Resources */,
+				36001AE81F848AEF0031A1EE /* Teacher.storyboard in Resources */,
 				36EEDAF41F7DDE8300C07497 /* Icons.xcassets in Resources */,
 				367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */,
 			);
@@ -382,10 +400,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36001AEB1F848FFF0031A1EE /* TeacherMainVC.swift in Sources */,
 				3682313A1F7DE8EE00AC2995 /* Extensions+String.swift in Sources */,
 				368231371F7DE8EE00AC2995 /* Extensions+Date.swift in Sources */,
 				3682312A1F7DE44500AC2995 /* SignUpVC.swift in Sources */,
 				36EEDAF81F7DE13A00C07497 /* LaunchVC.swift in Sources */,
+				36001AE61F8487A20031A1EE /* StudentRouter.swift in Sources */,
 				368231381F7DE8EE00AC2995 /* Extensions+HTTPURLResponse.swift in Sources */,
 				368231291F7DE44500AC2995 /* SignInVC.swift in Sources */,
 				36B2CD771F7DDB5800AAE83A /* AppDelegate.swift in Sources */,

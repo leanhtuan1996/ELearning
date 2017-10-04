@@ -118,6 +118,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         userObject.password = password
         userObject.dob = dob
         userObject.fullname = fullname
+        userObject.role = userRole.student
         UserServices.shared.signUp(with: userObject) { (user, error) in
             self.activityIndicatorView.stopAnimating()
             if let error = error {

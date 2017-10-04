@@ -14,6 +14,7 @@ class LaunchVC: UIViewController {
         super.viewDidLoad()
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            //print("aaa")
             if UserManager.shared.isLoggedIn() {
                 
                 //verify token
@@ -31,26 +32,16 @@ class LaunchVC: UIViewController {
                         return
                     }
                     
-                    guard let token = user.token else {
-                        print("Token not found")
-                        appDelegate.showSignInView()
-                        return
-                    }
-                    
-                    //set token
-                    UserManager.shared.setToken(token)
-                    
                     //check role
                     switch user.role ?? userRole.student {
                     case .student:
-                        appDelegate.showMainViewAdmin()
+                        appDelegate.showMainViewTeacher()
                     case .teacher:
                         appDelegate.showMainViewStudent()
                     }
                     
                 })
                 
-                //show main view
             } else {
                 appDelegate.showSignInView()
             }

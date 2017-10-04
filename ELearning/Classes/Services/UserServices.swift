@@ -8,16 +8,25 @@
 
 import UIKit
 import Alamofire
+import Gloss
 
 class UserServices: NSObject {
     static let shared = UserServices()
     
     func signIn(with user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()) {
         
-        let parameters = [
-            "email" : user.email,
-            "password" : user.password
-        ]
+//        guard let email = user.email, let password = user.password else {
+//            return completionHandler(nil, "Email or password not found")
+//        }
+        
+        guard let parameters: JSON = user.toJSON() else {
+            return completionHandler(nil, "Convert to JSON failed")
+        }
+        
+//        let parameters = [
+//            "email" : email,
+//            "password" : password
+//        ]
         
         Alamofire.request(UserRouter.signIn(parameters)).validate().response { (res) in
             //Error handle
@@ -80,13 +89,18 @@ class UserServices: NSObject {
     
     // MARK: - SIGN UP
     func signUp(with user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()){
-        let parameters: [String: Any] = [
-            "email" : user.email,
-            "password" : user.password,
-            "birthdate" : user.dob,
-            "fullname" : user.fullname,
-            "role" : user.role?.rawValue ?? "student"
-        ]
+        
+        guard let parameters: JSON = user.toJSON() else {
+            return completionHandler(nil, "Convert to JSON failed")
+        }
+        
+//        let parameters: [String: Any] = [
+//            "email" : user.email,
+//            "password" : user.password,
+//            "birthdate" : user.dob,
+//            "fullname" : user.fullname,
+//            "role" : user.role?.rawValue ?? "student"
+//        ]
         
         Alamofire.request(UserRouter.signUp(parameters))
             .validate()
@@ -94,7 +108,6 @@ class UserServices: NSObject {
                 
                 if let err = res.error {
                     return completionHandler(nil, Helpers.handleError(res.response, error: err as NSError))
-                    
                 }
                 
                 guard let data = res.data else {
@@ -144,7 +157,7 @@ class UserServices: NSObject {
     // MARK: - UPDATE PASSWORD
     func updatePw(_ oldPassword: String, newPassword: String, confirmPw: String, completionHandler: @escaping (_ error: String?) -> ()) {
         
-        let parameters: [String : String] = [
+        let parameters: [String : Any] = [
             "currentPassword" : oldPassword,
             "newPassword" : newPassword,
             "confirmPassword" : confirmPw
@@ -183,10 +196,14 @@ class UserServices: NSObject {
     // MARK: - UPDATE INFORMATIONS
     func updateInfo(_ user: UserObject, completionHandler: @escaping (_ error: String?) -> ()) {
         
-        let parameters = [
-            "birthday" : user.dob,
-            "fullname" : user.fullname
-        ]
+//        let parameters = [
+//            "birthday" : user.dob,
+//            "fullname" : user.fullname
+//        ]
+        
+        guard let parameters: JSON = user.toJSON() else {
+            return completionHandler("Convert to JSON failed")
+        }
         
         Alamofire.request(UserRouter.updateInfo(parameters))
             .validate()
@@ -219,6 +236,16 @@ class UserServices: NSObject {
     // MARK: - GET INFORMATIONS
     func getInformations(_ completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> ()) {
         
+        /*
+         {
+         "email": "lamquanguit@gmail.com",
+         "fullname": "Lâm Quang Lâm",
+         "birthdate": "1995-07-03T00:00:00.000Z",
+         "role": "teacher"
+         }
+         */
+        
+        
         Alamofire.request(UserRouter.getInfo())
             .validate()
             .response { (res) in
@@ -242,21 +269,12 @@ class UserServices: NSObject {
                         }
                     }
                     
-                    guard let customerInfoObject = json["customerInfo"] else {
+                    guard let userInfo = UserObject(json: json) else {
                         return completionHandler(nil, "Invalid data format")
                     }
                     
-                    //sign up successfully
-                    if let userInfo = Helpers.convertObjectToJson(object: customerInfoObject) {
-                        
-                        guard let userInfo = UserObject(json: userInfo) else {
-                            return completionHandler(nil, "Invalid data format")
-                        }
-                        
-                        return completionHandler(userInfo, nil)
-                    } else {
-                        return completionHandler(nil, "Invalid data format")
-                    }
+                    return completionHandler(userInfo, nil)
+                    
                 } else {
                     return completionHandler(nil, "Invalid data format")
                 }
