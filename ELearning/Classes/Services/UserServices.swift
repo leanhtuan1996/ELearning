@@ -281,4 +281,25 @@ class UserServices: NSObject {
         }
     }
     
+    func getTests(completionHandler: @escaping (_ tests: [TestObject]?, _ error: String?) -> Void) {
+        Alamofire.request(UserRouter.getTests())
+        .validate()
+        .response { (res) in
+            if let error = res.error {
+                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            guard let data = res.data else {
+                return completionHandler(nil, "Invalid data format")
+            }
+            
+            if let test = [TestObject].from(data: data) {
+                return completionHandler(test, nil)
+            } else {
+                return completionHandler(nil, "Invalid data format")
+            }
+            
+        }
+    }
+    
 }

@@ -35,9 +35,9 @@ class LaunchVC: UIViewController {
                     //check role
                     switch user.role ?? userRole.student {
                     case .student:
-                        appDelegate.showMainViewTeacher()
-                    case .teacher:
                         appDelegate.showMainViewStudent()
+                    case .teacher:
+                        appDelegate.showMainViewTeacher()
                     }
                     
                 })

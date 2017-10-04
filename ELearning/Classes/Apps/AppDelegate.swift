@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showMainViewStudent() {
-        if let sb = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainVC {
+        if let sb = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar") as? UITabBarController {
             self.window?.rootViewController = sb
         }
     }
