@@ -244,7 +244,7 @@
                         <viewControllerLayoutGuide type="top" id="4dm-qf-TXB"/>
                         <viewControllerLayoutGuide type="bottom" id="MUi-nn-N60"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ui7-BS-cPt">
+                    <view key="view" contentMode="scaleToFill" id="Ui7-BS-cPt" userLabel="rootView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

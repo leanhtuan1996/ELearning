@@ -20,37 +20,42 @@ class SignInVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpUIs(uiTextFields: [txtEmail, txtPassword], uiButtons: [btnSignIn, btnSignUp])
 
         //Email textfield
-        txtEmail.layer.borderColor = UIColor.white.cgColor
-        txtEmail.layer.borderWidth = 1
-        txtEmail.layer.cornerRadius = 5
-        txtEmail.backgroundColor = UIColor.clear
         txtEmail.attributedPlaceholder =
             NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtEmail.textColor = UIColor.white
         txtEmail.tag = 1
         txtEmail.becomeFirstResponder()
         txtEmail.keyboardType = .emailAddress
         
         //Password textField
-        txtPassword.layer.borderColor = UIColor.white.cgColor
-        txtPassword.layer.borderWidth = 1
-        txtPassword.layer.cornerRadius = 5
-        txtPassword.backgroundColor = UIColor.clear
         txtPassword.attributedPlaceholder =
             NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        txtPassword.textColor = UIColor.white
         txtPassword.tag = 2
         txtPassword.returnKeyType = .go
         
-        //Sign In button
-        btnSignIn.layer.cornerRadius = 10
-        
-        //Sign Up button
-        btnSignUp.layer.cornerRadius = 10
-        
     }
+    
+    func setUpUIs(uiTextFields: [UITextField]?, uiButtons: [UIButton]?) {
+        if let arrayTextFields = uiTextFields {
+            for textFields in arrayTextFields {
+                textFields.layer.borderColor = UIColor.white.cgColor
+                textFields.layer.borderWidth = 1
+                textFields.layer.cornerRadius = 5
+                textFields.backgroundColor = UIColor.clear
+                textFields.textColor = UIColor.white
+            }
+        }
+        
+        if let arrayUIButton = uiButtons {
+            for button in arrayUIButton {
+                button.layer.cornerRadius = 10
+            }
+        }
+    }
+
 
     // MARK: - DELEGATE UITEXTFIELDS
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -94,7 +99,6 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             }
             
             if let user = user {
-                
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.signIn_Up(user: user)
                 }

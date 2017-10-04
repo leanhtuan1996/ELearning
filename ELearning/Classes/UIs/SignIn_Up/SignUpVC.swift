@@ -24,10 +24,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let arrayTextFields: [UITextField] = [txtEmail, txtPassword, txtRetypePassword, txtFullName, txtDob]
-        let arrayButtons: [UIButton] = [btnSignIn, btnSignUp]
-        
-        setUpUIs(uiTextFields: arrayTextFields, uiButtons: arrayButtons)
+        setUpUIs(uiTextFields: [txtEmail, txtPassword, txtRetypePassword, txtFullName, txtDob]
+            , uiButtons: [btnSignIn, btnSignUp])
 
         //Email textfield
         txtEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.white])
@@ -127,10 +125,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-               appDelegate.showMainViewStudent()
+            if let user = user {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.signIn_Up(user: user)
+                }
             }
-            
         }
     }
     
