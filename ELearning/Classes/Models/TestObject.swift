@@ -12,7 +12,7 @@ import Gloss
 class TestObject: NSObject, Glossy {
     var id: String?
     var name: String?
-    var idTeacher: String?
+    var byTeacher: UserObject?
     var content: [String]?
     
     override init() { }
@@ -24,7 +24,11 @@ class TestObject: NSObject, Glossy {
         
         self.id = id
         self.name = "name" <~~ json
-        self.idTeacher = idTeacher
+        
+        let teacher = UserObject()
+        teacher.id = idTeacher
+        
+        self.byTeacher = teacher
         self.content = "content" <~~ json
     }
     
@@ -32,7 +36,7 @@ class TestObject: NSObject, Glossy {
         return jsonify([
             "id" ~~> self.id,
             "name" ~~> self.name,
-            "idTeacher" ~~> self.idTeacher,
+            "idTeacher" ~~> self.byTeacher?.id,
             "content" ~~> self.content
             ])
     }

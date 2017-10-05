@@ -13,7 +13,7 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var tblTests: UITableView!
     var tests: [TestObject] = []
-    
+    var refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,15 +22,38 @@ class MainVC: UIViewController {
         tblTests.register(UINib(nibName: "TestCell", bundle: nil), forCellReuseIdentifier: "TestCell")
         tblTests.estimatedRowHeight = 80
         
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(loadTests), for: .valueChanged)
+        
+        tblTests.refreshControl = refreshControl
+        
+        tabBarController?.tabBar.barTintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
+        //tabbar
+        if let items = tabBarController?.tabBar.items {
+            let tabBarImages = [#imageLiteral(resourceName: "listTest"), #imageLiteral(resourceName: "setting")]
+            for i in 0..<items.count {
+                let tabBarItem = items[i]
+                let tabBarImage = tabBarImages[i]
+                tabBarItem.image = tabBarImage.withRenderingMode(.alwaysOriginal)
+                tabBarItem.selectedImage = tabBarImage
+                tabBarItem.imageInsets = UIEdgeInsets( top: 5, left: 0, bottom: -5, right: 0)
+            }
+        }
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         loadTests()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     func loadTests() {
-        UserServices.shared.getTests { (tests, error) in
+        TestServices.shared.getTests { (tests, error) in
             if let error = error {
                 print(error)
                 return
@@ -38,6 +61,7 @@ class MainVC: UIViewController {
             
             self.tests = tests ?? []
             self.tblTests.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 
@@ -55,7 +79,33 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.lblName.text = tests[indexPath.row].name
         cell.lblTotalContent.text = tests[indexPath.row].content?.count.toString()
+        cell.lblByTeacherName.text = tests[indexPath.row].byTeacher?.fullname
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let sb = storyboard?.instantiateViewController(withIdentifier: "DetailTestVC") as? DetailTestVC {
+            
+            guard let id = tests[indexPath.row].id else {
+                return
+            }
+            //Load detail test
+            TestServices.shared.loadTest(withId: id) { (test, error) in
+                if let error = error {
+                    print(error)
+                    self.showAlert(error, title: "Thông báo", buttons: nil)
+                    return
+                }
+                
+                sb.mytest = test
+                self.addChildViewController(sb)
+                self.view.addSubview(sb.view)
+                sb.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+                
+            }
+        }
+    }
+    
+   
 }

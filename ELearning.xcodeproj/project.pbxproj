@@ -11,13 +11,13 @@
 		36001AE61F8487A20031A1EE /* StudentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AE51F8487A20031A1EE /* StudentRouter.swift */; };
 		36001AE81F848AEF0031A1EE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36001AE71F848AEF0031A1EE /* Teacher.storyboard */; };
 		36001AEB1F848FFF0031A1EE /* TeacherMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AEA1F848FFF0031A1EE /* TeacherMainVC.swift */; };
-		36001AED1F84948C0031A1EE /* StudentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AEC1F84948C0031A1EE /* StudentServices.swift */; };
-		36001AEF1F8494CD0031A1EE /* TeacherServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AEE1F8494CD0031A1EE /* TeacherServices.swift */; };
 		36001AF11F8496970031A1EE /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AF01F8496970031A1EE /* TestObject.swift */; };
 		36001AF51F84A0300031A1EE /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AF41F84A0300031A1EE /* MainVC.swift */; };
 		36001AF91F84D2850031A1EE /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AF71F84D2850031A1EE /* TestCell.swift */; };
 		36001AFA1F84D2850031A1EE /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36001AF81F84D2850031A1EE /* TestCell.xib */; };
 		36001AFC1F84D82F0031A1EE /* Extensions+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AFB1F84D82F0031A1EE /* Extensions+Int.swift */; };
+		36001AFE1F84DA9C0031A1EE /* TestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AFD1F84DA9C0031A1EE /* TestServices.swift */; };
+		36001B011F85ED510031A1EE /* DetailTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001B001F85ED510031A1EE /* DetailTestVC.swift */; };
 		367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */; };
 		367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */; };
 		367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423151F7E0A0700BBCD88 /* SignInUp.storyboard */; };
@@ -48,13 +48,13 @@
 		36001AE51F8487A20031A1EE /* StudentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentRouter.swift; sourceTree = "<group>"; };
 		36001AE71F848AEF0031A1EE /* Teacher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = "<group>"; };
 		36001AEA1F848FFF0031A1EE /* TeacherMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherMainVC.swift; sourceTree = "<group>"; };
-		36001AEC1F84948C0031A1EE /* StudentServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentServices.swift; sourceTree = "<group>"; };
-		36001AEE1F8494CD0031A1EE /* TeacherServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherServices.swift; sourceTree = "<group>"; };
 		36001AF01F8496970031A1EE /* TestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		36001AF41F84A0300031A1EE /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		36001AF71F84D2850031A1EE /* TestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
 		36001AF81F84D2850031A1EE /* TestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
 		36001AFB1F84D82F0031A1EE /* Extensions+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+Int.swift"; sourceTree = "<group>"; };
+		36001AFD1F84DA9C0031A1EE /* TestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestServices.swift; sourceTree = "<group>"; };
+		36001B001F85ED510031A1EE /* DetailTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTestVC.swift; sourceTree = "<group>"; };
 		367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIViewController.swift"; sourceTree = "<group>"; };
 		367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		367423151F7E0A0700BBCD88 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
@@ -123,6 +123,7 @@
 		36001AF31F849EB70031A1EE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				36001AFF1F85ED3E0031A1EE /* DetailTest */,
 				36001AF61F84D26A0031A1EE /* TestCell */,
 				36001AF41F84A0300031A1EE /* MainVC.swift */,
 			);
@@ -136,6 +137,14 @@
 				36001AF81F84D2850031A1EE /* TestCell.xib */,
 			);
 			path = TestCell;
+			sourceTree = "<group>";
+		};
+		36001AFF1F85ED3E0031A1EE /* DetailTest */ = {
+			isa = PBXGroup;
+			children = (
+				36001B001F85ED510031A1EE /* DetailTestVC.swift */,
+			);
+			path = DetailTest;
 			sourceTree = "<group>";
 		};
 		362146B91F7DDC1700D8F7F4 /* Apps */ = {
@@ -188,8 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				36EEDAFC1F7DE16E00C07497 /* UserServices.swift */,
-				36001AEC1F84948C0031A1EE /* StudentServices.swift */,
-				36001AEE1F8494CD0031A1EE /* TeacherServices.swift */,
+				36001AFD1F84DA9C0031A1EE /* TestServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -448,18 +456,18 @@
 				368231371F7DE8EE00AC2995 /* Extensions+Date.swift in Sources */,
 				3682312A1F7DE44500AC2995 /* SignUpVC.swift in Sources */,
 				36EEDAF81F7DE13A00C07497 /* LaunchVC.swift in Sources */,
+				36001B011F85ED510031A1EE /* DetailTestVC.swift in Sources */,
 				36001AF11F8496970031A1EE /* TestObject.swift in Sources */,
 				36001AF51F84A0300031A1EE /* MainVC.swift in Sources */,
 				36001AE61F8487A20031A1EE /* StudentRouter.swift in Sources */,
 				368231381F7DE8EE00AC2995 /* Extensions+HTTPURLResponse.swift in Sources */,
 				368231291F7DE44500AC2995 /* SignInVC.swift in Sources */,
-				36001AEF1F8494CD0031A1EE /* TeacherServices.swift in Sources */,
 				36B2CD771F7DDB5800AAE83A /* AppDelegate.swift in Sources */,
-				36001AED1F84948C0031A1EE /* StudentServices.swift in Sources */,
 				368231361F7DE8EE00AC2995 /* Extensions+Data.swift in Sources */,
 				3682313B1F7DE8EE00AC2995 /* Extensions+UIActivityIndicatorView.swift in Sources */,
 				36001AF91F84D2850031A1EE /* TestCell.swift in Sources */,
 				36EEDAFA1F7DE15300C07497 /* UserManager.swift in Sources */,
+				36001AFE1F84DA9C0031A1EE /* TestServices.swift in Sources */,
 				368231201F7DE3BB00AC2995 /* UserRouter.swift in Sources */,
 				36EEDAFD1F7DE16E00C07497 /* UserServices.swift in Sources */,
 				368231401F7DE96A00AC2995 /* Helpers.swift in Sources */,

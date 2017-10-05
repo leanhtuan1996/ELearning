@@ -12,7 +12,7 @@ import Alamofire
 enum StudentRouter: URLRequestConvertible {
     
     //Action
-    case loadTest()
+    case loadTest([String: Any])
     case doTest([String : Any])
     case joinTest([String: Any])
     
@@ -20,7 +20,7 @@ enum StudentRouter: URLRequestConvertible {
     var method: Alamofire.HTTPMethod {
         switch self {
         case .loadTest:
-            return .get
+            return .post
         case .doTest:
             return .post
         case .joinTest:
@@ -53,8 +53,8 @@ enum StudentRouter: URLRequestConvertible {
         }
         
         switch self {
-        case .loadTest():
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .loadTest(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .joinTest(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .doTest(let parameters):

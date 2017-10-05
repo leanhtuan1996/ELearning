@@ -15,6 +15,7 @@ enum userRole: String {
 }
 
 class UserObject: NSObject, Glossy {
+    var id: String?
     var email: String?
     var password: String?
     var fullname: String?
@@ -28,8 +29,8 @@ class UserObject: NSObject, Glossy {
         guard let email: String = "email" <~~ json else {
             return nil
         }
-        
         self.email = email
+        self.id = "id" <~~ json
         self.password = "password" <~~ json
         self.fullname = "fullname" <~~ json
         self.dob = "birthdate" <~~ json

@@ -1,7 +1,7 @@
 //
 //  UserServices.swift
 //  ELearning
-//
+//  Services for all users
 //  Created by Lê Anh Tuấn on 9/29/17.
 //  Copyright © 2017 Lê Anh Tuấn. All rights reserved.
 //
@@ -13,6 +13,7 @@ import Gloss
 class UserServices: NSObject {
     static let shared = UserServices()
     
+    // MARK: - SIGN IN
     func signIn(with user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()) {
         
 //        guard let email = user.email, let password = user.password else {
@@ -281,25 +282,5 @@ class UserServices: NSObject {
         }
     }
     
-    func getTests(completionHandler: @escaping (_ tests: [TestObject]?, _ error: String?) -> Void) {
-        Alamofire.request(UserRouter.getTests())
-        .validate()
-        .response { (res) in
-            if let error = res.error {
-                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
-            }
-            
-            guard let data = res.data else {
-                return completionHandler(nil, "Invalid data format")
-            }
-            
-            if let test = [TestObject].from(data: data) {
-                return completionHandler(test, nil)
-            } else {
-                return completionHandler(nil, "Invalid data format")
-            }
-            
-        }
-    }
     
 }
