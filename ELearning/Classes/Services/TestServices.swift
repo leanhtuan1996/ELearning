@@ -80,7 +80,23 @@ class TestServices: NSObject {
                 }
                 
                 if let test = TestObject(json: testJSON) {
-                    return completionHandler(test, nil)
+                    
+                    guard let id = test.byTeacher?.id else {
+                        print("Id teacher not found")
+                        return completionHandler(test, nil)
+                    }
+                    
+                    //Get informations Teacher
+                    UserServices.shared.getInformations(byId: id, { (teacher, error) in
+                        print("OK")
+                        if error == nil {                            
+                            teacher?.id = id
+                            test.byTeacher = teacher
+                            return completionHandler(test, nil)
+                        }
+                        return completionHandler(test, nil)
+                    })
+                    
                 } else {
                     print("3")
                     return completionHandler(nil, "Invalid data format")

@@ -282,5 +282,13 @@ class UserServices: NSObject {
         }
     }
     
+    func getInformations(byId id: String, _ completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> () ) {
+        
+        let teacher = UserObject()
+        teacher.id = id
+        teacher.fullname = "Lê Tuấn"
+        
+        return completionHandler(teacher, nil)
+    }
     
 }

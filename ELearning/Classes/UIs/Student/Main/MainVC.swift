@@ -30,7 +30,7 @@ class MainVC: UIViewController {
         tblTests.refreshControl = refreshControl
         
         tabBarController?.tabBar.barTintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        
+        loadTests()
         //tabbar
         if let items = tabBarController?.tabBar.items {
             let tabBarImages = [#imageLiteral(resourceName: "listTest"), #imageLiteral(resourceName: "setting")]
@@ -47,7 +47,7 @@ class MainVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        loadTests()
+        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -99,8 +99,11 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 sb.mytest = test
+                
                 self.addChildViewController(sb)
+                sb.view.frame = self.view.frame
                 self.view.addSubview(sb.view)
+                sb.didMove(toParentViewController: self)
                 sb.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
                 
             }

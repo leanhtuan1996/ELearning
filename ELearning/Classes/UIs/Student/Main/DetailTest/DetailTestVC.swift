@@ -17,19 +17,18 @@ class DetailTestVC: UIViewController {
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblCount: UILabel!
     
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeAnimate))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewPopup.layer.cornerRadius = 5
+        showAnimate()
+        self.view.addGestureRecognizer(tapGesture)
     }
     
-    func backToSupperview() {
-        print("QUIT")
-        self.removeFromParentViewController()
-        self.view.removeFromSuperview()
-    }
     
     @IBAction func back(_ sender: Any) {
-       backToSupperview()
+       removeAnimate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,5 +39,43 @@ class DetailTestVC: UIViewController {
         lblStatus.text = "Chưa làm"
     }
     @IBAction func btnJoinTestTapped(_ sender: Any) {
+        guard let id = mytest?.id else {
+            return
+        }
+        
+        TestServices.shared.joinTest(withId: id) { (error) in
+            if let error = error {
+                print(error)
+                //return
+            }
+            if let sb = self.storyboard?.instantiateViewController(withIdentifier: "DoTestVC") as? DoTestVC {
+                self.navigationController?.pushViewController(sb, animated: true)
+            }
+        }
+    }
+    
+    func showAnimate()
+    {
+        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.view.alpha = 0.0
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.alpha = 1.0
+            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
+    }
+    
+    func removeAnimate()
+    {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.view.alpha = 0.0
+        }, completion: {(finished : Bool) in
+            if(finished)
+            {
+                self.willMove(toParentViewController: nil)
+                self.view.removeFromSuperview()
+                self.removeFromParentViewController()
+            }
+        })
     }
 }

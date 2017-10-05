@@ -18,6 +18,7 @@
 		36001AFC1F84D82F0031A1EE /* Extensions+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AFB1F84D82F0031A1EE /* Extensions+Int.swift */; };
 		36001AFE1F84DA9C0031A1EE /* TestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AFD1F84DA9C0031A1EE /* TestServices.swift */; };
 		36001B011F85ED510031A1EE /* DetailTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001B001F85ED510031A1EE /* DetailTestVC.swift */; };
+		36001B041F868A9D0031A1EE /* DoTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001B031F868A9D0031A1EE /* DoTestVC.swift */; };
 		367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */; };
 		367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */; };
 		367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423151F7E0A0700BBCD88 /* SignInUp.storyboard */; };
@@ -55,6 +56,7 @@
 		36001AFB1F84D82F0031A1EE /* Extensions+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+Int.swift"; sourceTree = "<group>"; };
 		36001AFD1F84DA9C0031A1EE /* TestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestServices.swift; sourceTree = "<group>"; };
 		36001B001F85ED510031A1EE /* DetailTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTestVC.swift; sourceTree = "<group>"; };
+		36001B031F868A9D0031A1EE /* DoTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTestVC.swift; sourceTree = "<group>"; };
 		367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIViewController.swift"; sourceTree = "<group>"; };
 		367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		367423151F7E0A0700BBCD88 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		36001AF31F849EB70031A1EE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				36001B021F868A8C0031A1EE /* DoTest */,
 				36001AFF1F85ED3E0031A1EE /* DetailTest */,
 				36001AF61F84D26A0031A1EE /* TestCell */,
 				36001AF41F84A0300031A1EE /* MainVC.swift */,
@@ -145,6 +148,14 @@
 				36001B001F85ED510031A1EE /* DetailTestVC.swift */,
 			);
 			path = DetailTest;
+			sourceTree = "<group>";
+		};
+		36001B021F868A8C0031A1EE /* DoTest */ = {
+			isa = PBXGroup;
+			children = (
+				36001B031F868A9D0031A1EE /* DoTestVC.swift */,
+			);
+			path = DoTest;
 			sourceTree = "<group>";
 		};
 		362146B91F7DDC1700D8F7F4 /* Apps */ = {
@@ -464,6 +475,7 @@
 				368231291F7DE44500AC2995 /* SignInVC.swift in Sources */,
 				36B2CD771F7DDB5800AAE83A /* AppDelegate.swift in Sources */,
 				368231361F7DE8EE00AC2995 /* Extensions+Data.swift in Sources */,
+				36001B041F868A9D0031A1EE /* DoTestVC.swift in Sources */,
 				3682313B1F7DE8EE00AC2995 /* Extensions+UIActivityIndicatorView.swift in Sources */,
 				36001AF91F84D2850031A1EE /* TestCell.swift in Sources */,
 				36EEDAFA1F7DE15300C07497 /* UserManager.swift in Sources */,
