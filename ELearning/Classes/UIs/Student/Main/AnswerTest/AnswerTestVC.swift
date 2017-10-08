@@ -67,6 +67,24 @@ class AnswerTestVC: UIViewController {
     func pushAnswer() {
         
     }
+    
+    func statusQuestionHandler(withQuestion question: QuestionObject) -> String {
+        if let answers = test?.answers, let idQuestion = question.id {
+            if answers.contains(where: { (answer) -> Bool in
+                if let id = answer.questionId {
+                    return id == idQuestion
+                }
+                return false
+                
+            }) {
+                return "Completed"
+            } else {
+                return "Not completed yet"
+            }
+        }
+        return "Not completed yet"
+    }
+    
 }
 
 
@@ -82,9 +100,10 @@ extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource {
         
         if let questions = test?.questions {
             cell.question = questions[indexPath.row]
+            cell.lblStatus.text = statusQuestionHandler(withQuestion: questions[indexPath.row])
+            cell.lblQuestion.text = questions[indexPath.row].question
         }
         
-        cell.lblQuestion.text = test?.questions?[indexPath.row].question
         return cell
     }
 }
