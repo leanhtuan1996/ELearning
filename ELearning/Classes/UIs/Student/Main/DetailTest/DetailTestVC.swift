@@ -37,6 +37,7 @@ class DetailTestVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
         lblName.text = mytest?.name
         
         if let teacherId = mytest?.byTeacher?.id {
@@ -72,8 +73,10 @@ class DetailTestVC: UIViewController {
     }
     
     func showAnswerTest() {
-        if let sb = self.storyboard?.instantiateViewController(withIdentifier: "DoTestVC") as? DoTestVC {
+        if let sb = self.storyboard?.instantiateViewController(withIdentifier: "AnswerTestVC") as? AnswerTestVC {
+            sb.test = mytest
             self.navigationController?.pushViewController(sb, animated: true)
+            self.tabBarController?.hidesBottomBarWhenPushed = true
         }
     }
     
