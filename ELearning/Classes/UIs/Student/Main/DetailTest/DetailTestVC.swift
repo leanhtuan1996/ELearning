@@ -31,9 +31,8 @@ class DetailTestVC: UIViewController {
         tblQuestions.register(UINib(nibName: "QuestionsCell", bundle: nil), forCellReuseIdentifier: "QuestionsCell")
     }
     
-    
     @IBAction func back(_ sender: Any) {
-       removeAnimate()
+        removeAnimate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,14 +49,31 @@ class DetailTestVC: UIViewController {
             return
         }
         
-        TestServices.shared.joinTest(withId: id) { (error) in
+        TestServices.shared.joinTest(withId: id) { (isJoin, error) in
             if let error = error {
-                print(error)
-                //return
+                self.showAlert(error, title: "Join this test failed", buttons: nil)
+                return
             }
-            if let sb = self.storyboard?.instantiateViewController(withIdentifier: "DoTestVC") as? DoTestVC {
-                self.navigationController?.pushViewController(sb, animated: true)
+            
+            if let isJoin = isJoin {
+                if isJoin {
+                    
+                    let answerTest = UIAlertAction(title: "Answer test now", style: UIAlertActionStyle.default, handler: { (btn) in
+                        self.showAnswerTest()
+                    })
+                    
+                    let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    self.showAlert("This test had been joined!", title: "Join this test error", buttons: [answerTest, cancel])
+                    return
+                }
             }
+        }
+    }
+    
+    func showAnswerTest() {
+        if let sb = self.storyboard?.instantiateViewController(withIdentifier: "DoTestVC") as? DoTestVC {
+            self.navigationController?.pushViewController(sb, animated: true)
         }
     }
     
@@ -76,8 +92,8 @@ class DetailTestVC: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.view.alpha = 0.0
-        }, completion: {(finished : Bool) in
-            if(finished)
+        }, completion: {(finished) in
+            if finished
             {
                 self.willMove(toParentViewController: nil)
                 self.view.removeFromSuperview()
@@ -88,8 +104,8 @@ class DetailTestVC: UIViewController {
     
     func getInfoTeacher(withId id: String) {
         UserServices.shared.getInformations(byId: id) { (user, error) in
-            if let error = error {
-                print(error)
+            if let _ = error {
+                self.lblBy.text = "User is not available."
                 return
             }
             
@@ -98,6 +114,8 @@ class DetailTestVC: UIViewController {
                 DispatchQueue.main.async {
                     self.lblBy.text = user.fullname ?? "Chưa rõ danh tính"
                 }
+            } else {
+                self.lblBy.text = "User is not available."
             }
         }
     }

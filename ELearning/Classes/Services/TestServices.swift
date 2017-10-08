@@ -140,7 +140,7 @@ class TestServices: NSObject {
         }
     }
     
-    func joinTest(withId id: String, completionHandler: @escaping (_ error: String?) -> Void ) {
+    func joinTest(withId id: String, completionHandler: @escaping (_ isJoined: Bool?, _ error: String?) -> Void ) {
         let parameters: [String: Any] = [
             "testId" : id
         ]
@@ -149,22 +149,28 @@ class TestServices: NSObject {
         .validate()
         .response { (res) in
             if let error = res.error {
-                return completionHandler(Helpers.handleError(res.response, error: error as NSError))
+                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
             }
             
-            guard let data = res.data, let dataJson = data.toDictionary() else {
-                return completionHandler("Invalid data format")
+            guard let data = res.data, let json = data.toDictionary() else {
+                return completionHandler(nil, "Invalid data format")
             }
             
-            if let errors = dataJson["errors"] as? [String] {
+            if let errors = json["errors"] as? [String] {
                 if errors.count > 0 {
-                    return completionHandler(errors[0])
+                    return completionHandler(nil, errors[0])
                 }
-                return completionHandler(nil)
-            } else {
-                return completionHandler("Invalid data format")
+                //
             }
             
+            if let isJoin = json["joint"] as? Bool {
+                if isJoin {
+                    print("JOINT")
+                    return completionHandler(true, nil)
+                }
+            }
+            
+            return completionHandler(nil, nil)
         }
     }
     
