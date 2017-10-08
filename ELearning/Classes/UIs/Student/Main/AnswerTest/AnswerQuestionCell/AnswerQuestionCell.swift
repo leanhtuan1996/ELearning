@@ -12,6 +12,10 @@ class AnswerQuestionCell: UITableViewCell {
 
     var question: QuestionObject?
     
+    @IBOutlet weak var imgRecord: UIImageView!
+    @IBOutlet weak var lblQuestion: UILabel!
+    @IBOutlet weak var lblStatus: UILabel!
+    @IBOutlet weak var imgPush: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

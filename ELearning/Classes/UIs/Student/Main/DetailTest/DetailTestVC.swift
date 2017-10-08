@@ -56,19 +56,21 @@ class DetailTestVC: UIViewController {
                 return
             }
             
+            let answerTest = UIAlertAction(title: "Answer test now", style: UIAlertActionStyle.default, handler: { (btn) in
+                self.showAnswerTest()
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
             if let isJoin = isJoin {
                 if isJoin {
-                    
-                    let answerTest = UIAlertAction(title: "Answer test now", style: UIAlertActionStyle.default, handler: { (btn) in
-                        self.showAnswerTest()
-                    })
-                    
-                    let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                    
                     self.showAlert("This test had been joined!", title: "Join this test error", buttons: [answerTest, cancel])
                     return
                 }
             }
+            
+            self.showAlert("Join test successfully! You can answer test now", title: "Join test successfully", buttons: [answerTest, cancel])
+            return
+            
         }
     }
     
@@ -127,7 +129,7 @@ class DetailTestVC: UIViewController {
 extension DetailTestVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let contents = mytest?.contents {
+        if let contents = mytest?.questions {
             return contents.count
         }
         
@@ -139,7 +141,7 @@ extension DetailTestVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.lblQuestion.text = mytest?.contents?[indexPath.row].question
+        cell.lblQuestion.text = mytest?.questions?[indexPath.row].question
         return cell
     }
 }

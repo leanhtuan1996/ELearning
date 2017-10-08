@@ -47,7 +47,7 @@ class UserObject: NSObject, NSCoding, Glossy {
             "email" ~~> self.email,
             "password" ~~> self.password,
             "fullname" ~~> self.fullname,
-            "birthday" ~~> self.dob,
+            "birthdate" ~~> self.dob,
             "role" ~~> self.role?.rawValue
             ])
     }

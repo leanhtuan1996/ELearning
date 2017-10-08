@@ -103,6 +103,8 @@ class UserServices: NSObject {
 //            "role" : user.role?.rawValue ?? "student"
 //        ]
         
+        print(parameters)
+        
         Alamofire.request(UserRouter.signUp(parameters))
             .validate()
             .response { (res) in

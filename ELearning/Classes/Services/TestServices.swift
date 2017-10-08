@@ -84,6 +84,8 @@ class TestServices: NSObject {
             "testId": id
         ]
         
+        print("GET TEST WITH ID: \(id)")
+        
         Alamofire.request(StudentRouter.loadTest(parameter))
         .validate()
         .response { (res) in
@@ -104,13 +106,12 @@ class TestServices: NSObject {
                     }
                 }
                 
-                //success
-                guard let testJSON = responeJSON["test"] as? JSON else {
-                    print("2")
-                    return completionHandler(nil, "Invalid data format")
-                }
+//                guard let testJSON = responeJSON as? JSON else {
+//                    print("2")
+//                    return completionHandler(nil, "Invalid data format")
+//                }
                 
-                if let test = TestObject(json: testJSON) {
+                if let test = TestObject(json: responeJSON) {
                     
                     guard let id = test.byTeacher?.id else {
                         print("Id teacher not found")
@@ -119,7 +120,7 @@ class TestServices: NSObject {
                     
                     //Get informations Teacher
                     UserServices.shared.getInformations(byId: id, completionHandler: { (teacher, error) in
-                        print("OK")
+                        //print("OK")
                         if error == nil {                            
                             teacher?.id = id
                             test.byTeacher = teacher
@@ -133,10 +134,13 @@ class TestServices: NSObject {
                     return completionHandler(nil, "Invalid data format")
                 }
                 
+                
             } else {
                 print("4")
                 return completionHandler(nil, "Invalid data format")
             }
+           
+            
         }
     }
     

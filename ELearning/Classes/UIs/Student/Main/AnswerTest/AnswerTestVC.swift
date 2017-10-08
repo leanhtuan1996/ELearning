@@ -72,7 +72,7 @@ class AnswerTestVC: UIViewController {
 
 extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test?.contents?.count ?? 0
+        return test?.questions?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,14 +80,16 @@ extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if let questions = test?.contents {
+        if let questions = test?.questions {
             cell.question = questions[indexPath.row]
         }
         
+        cell.lblQuestion.text = test?.questions?[indexPath.row].question
         return cell
     }
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-    //    }
+}
+
+protocol AnswerQuestionTestDelegate {
+    func recordQuestion() -> Void
+    func submitRecord() -> Void
 }
