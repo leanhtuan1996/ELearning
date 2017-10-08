@@ -22,9 +22,11 @@ enum UserRouter: URLRequestConvertible {
     case signUp([String : Any])
     case updatePw([String : Any])
     case updateInfo([String : Any])
-    case getInfo()
+    case getInfoById([String: Any])
+    case getInfoByToken()
     case getTest([String: Any])
     case getTests()
+    case getMyTests()
     
     //Variable Method
     var method: Alamofire.HTTPMethod {
@@ -37,11 +39,15 @@ enum UserRouter: URLRequestConvertible {
             return .post
         case .updateInfo:
             return .post
-        case .getInfo:
+        case .getInfoById:
+            return .post
+        case .getInfoByToken:
             return .get
         case .getTest:
-            return .get
+            return .post
         case .getTests:
+            return .get
+        case .getMyTests:
             return .get
         }
     }
@@ -57,12 +63,16 @@ enum UserRouter: URLRequestConvertible {
             return "/change-password"
         case . updateInfo:
             return "/update-information"
-        case .getInfo:
+        case .getInfoById:
+            return "/user-info"
+        case .getInfoByToken:
             return "/user-info"
         case .getTest:
             return "/get-test"
         case .getTests:
             return "/get-tests"
+        case .getMyTests:
+            return "/get-my-tests"            
         }
     }
     
@@ -87,11 +97,15 @@ enum UserRouter: URLRequestConvertible {
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .updateInfo(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .getInfo():
+        case .getInfoById(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getInfoByToken():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         case .getTest(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .getTests():
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .getMyTests():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         }
         

@@ -13,7 +13,7 @@ class TestObject: NSObject, Glossy {
     var id: String?
     var name: String?
     var byTeacher: UserObject?
-    var content: [String]?
+    var contents: [QuestionObject]?
     
     override init() { }
     
@@ -29,7 +29,12 @@ class TestObject: NSObject, Glossy {
         teacher.id = idTeacher
         
         self.byTeacher = teacher
-        self.content = "content" <~~ json
+        
+        if let contents: [JSON] = "contents" <~~ json {
+            self.contents = [QuestionObject].from(jsonArray: contents)
+        }
+        
+        
     }
     
     func toJSON() -> JSON? {
@@ -37,7 +42,7 @@ class TestObject: NSObject, Glossy {
             "id" ~~> self.id,
             "name" ~~> self.name,
             "idTeacher" ~~> self.byTeacher?.id,
-            "content" ~~> self.content
+            "content" ~~> self.contents
             ])
     }
     

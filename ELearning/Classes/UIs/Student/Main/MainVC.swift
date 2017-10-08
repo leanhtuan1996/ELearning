@@ -9,7 +9,7 @@
 import UIKit
 
 class MainVC: UIViewController {
-
+    
     
     @IBOutlet weak var tblTests: UITableView!
     var tests: [TestObject] = []
@@ -33,7 +33,7 @@ class MainVC: UIViewController {
         loadTests()
         //tabbar
         if let items = tabBarController?.tabBar.items {
-            let tabBarImages = [#imageLiteral(resourceName: "listTest"), #imageLiteral(resourceName: "setting")]
+            let tabBarImages = [#imageLiteral(resourceName: "listTest"), #imageLiteral(resourceName: "alert"), #imageLiteral(resourceName: "setting")]
             for i in 0..<items.count {
                 let tabBarItem = items[i]
                 let tabBarImage = tabBarImages[i]
@@ -51,7 +51,7 @@ class MainVC: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
     }
-
+    
     func loadTests() {
         TestServices.shared.getTests { (tests, error) in
             if let error = error {
@@ -64,7 +64,7 @@ class MainVC: UIViewController {
             self.refreshControl.endRefreshing()
         }
     }
-
+    
 }
 
 extension MainVC: UITableViewDelegate, UITableViewDataSource {
@@ -78,8 +78,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.lblName.text = tests[indexPath.row].name
-        cell.lblTotalContent.text = tests[indexPath.row].content?.count.toString()
-        cell.lblByTeacherName.text = tests[indexPath.row].byTeacher?.fullname
+        //cell.lblByTeacherName.text = tests[indexPath.row].byTeacher?.fullname
         
         return cell
     }
@@ -90,25 +89,23 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
             guard let id = tests[indexPath.row].id else {
                 return
             }
-            //Load detail test
-            TestServices.shared.loadTest(withId: id) { (test, error) in
+            
+            TestServices.shared.getTest(withId: id, completionHandler: { (test, error) in
                 if let error = error {
-                    print(error)
-                    self.showAlert(error, title: "Thông báo", buttons: nil)
+                    self.showAlert(error, title: "Load test fail", buttons: nil)
                     return
                 }
                 
                 sb.mytest = test
-                
                 self.addChildViewController(sb)
                 sb.view.frame = self.view.frame
                 self.view.addSubview(sb.view)
                 sb.didMove(toParentViewController: self)
                 sb.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
                 
-            }
+            })
         }
     }
     
-   
+    
 }

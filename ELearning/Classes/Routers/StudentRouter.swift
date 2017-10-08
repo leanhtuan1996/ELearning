@@ -13,7 +13,7 @@ enum StudentRouter: URLRequestConvertible {
     
     //Action
     case loadTest([String: Any])
-    case doTest([String : Any])
+    case answerTest([String : Any])
     case joinTest([String: Any])
     
     //Variable Method
@@ -21,7 +21,7 @@ enum StudentRouter: URLRequestConvertible {
         switch self {
         case .loadTest:
             return .post
-        case .doTest:
+        case .answerTest:
             return .post
         case .joinTest:
             return .post
@@ -33,8 +33,8 @@ enum StudentRouter: URLRequestConvertible {
         switch self {
         case .loadTest:
             return "/student/load-test"
-        case .doTest:
-            return "/student/do-test"
+        case .answerTest:
+            return "/student/save-answer"
         case .joinTest:
             return "/student/join-test"
         }
@@ -57,7 +57,7 @@ enum StudentRouter: URLRequestConvertible {
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .joinTest(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .doTest(let parameters):
+        case .answerTest(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
         

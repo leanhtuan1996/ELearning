@@ -19,6 +19,9 @@
 		36001AFE1F84DA9C0031A1EE /* TestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001AFD1F84DA9C0031A1EE /* TestServices.swift */; };
 		36001B011F85ED510031A1EE /* DetailTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001B001F85ED510031A1EE /* DetailTestVC.swift */; };
 		36001B041F868A9D0031A1EE /* DoTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36001B031F868A9D0031A1EE /* DoTestVC.swift */; };
+		3604157A1F893A1100A8794E /* QuestionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360415791F893A1100A8794E /* QuestionObject.swift */; };
+		3604157E1F89FCF000A8794E /* QuestionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3604157C1F89FCF000A8794E /* QuestionsCell.swift */; };
+		3604157F1F89FCF000A8794E /* QuestionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3604157D1F89FCF000A8794E /* QuestionsCell.xib */; };
 		367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */; };
 		367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */; };
 		367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423151F7E0A0700BBCD88 /* SignInUp.storyboard */; };
@@ -57,6 +60,9 @@
 		36001AFD1F84DA9C0031A1EE /* TestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestServices.swift; sourceTree = "<group>"; };
 		36001B001F85ED510031A1EE /* DetailTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTestVC.swift; sourceTree = "<group>"; };
 		36001B031F868A9D0031A1EE /* DoTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoTestVC.swift; sourceTree = "<group>"; };
+		360415791F893A1100A8794E /* QuestionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionObject.swift; sourceTree = "<group>"; };
+		3604157C1F89FCF000A8794E /* QuestionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsCell.swift; sourceTree = "<group>"; };
+		3604157D1F89FCF000A8794E /* QuestionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionsCell.xib; sourceTree = "<group>"; };
 		367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIViewController.swift"; sourceTree = "<group>"; };
 		367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		367423151F7E0A0700BBCD88 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 		36001AFF1F85ED3E0031A1EE /* DetailTest */ = {
 			isa = PBXGroup;
 			children = (
+				3604157B1F89FCDD00A8794E /* QuestionsCell */,
 				36001B001F85ED510031A1EE /* DetailTestVC.swift */,
 			);
 			path = DetailTest;
@@ -156,6 +163,15 @@
 				36001B031F868A9D0031A1EE /* DoTestVC.swift */,
 			);
 			path = DoTest;
+			sourceTree = "<group>";
+		};
+		3604157B1F89FCDD00A8794E /* QuestionsCell */ = {
+			isa = PBXGroup;
+			children = (
+				3604157C1F89FCF000A8794E /* QuestionsCell.swift */,
+				3604157D1F89FCF000A8794E /* QuestionsCell.xib */,
+			);
+			path = QuestionsCell;
 			sourceTree = "<group>";
 		};
 		362146B91F7DDC1700D8F7F4 /* Apps */ = {
@@ -192,6 +208,7 @@
 			children = (
 				36EEDAF51F7DE0D300C07497 /* UserObject.swift */,
 				36001AF01F8496970031A1EE /* TestObject.swift */,
+				360415791F893A1100A8794E /* QuestionObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -393,6 +410,7 @@
 				367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */,
 				36B2CD8D1F7DDCF200AAE83A /* Main.storyboard in Resources */,
 				36001AE81F848AEF0031A1EE /* Teacher.storyboard in Resources */,
+				3604157F1F89FCF000A8794E /* QuestionsCell.xib in Resources */,
 				36EEDAF41F7DDE8300C07497 /* Icons.xcassets in Resources */,
 				367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */,
 				36001AFA1F84D2850031A1EE /* TestCell.xib in Resources */,
@@ -481,11 +499,13 @@
 				36EEDAFA1F7DE15300C07497 /* UserManager.swift in Sources */,
 				36001AFE1F84DA9C0031A1EE /* TestServices.swift in Sources */,
 				368231201F7DE3BB00AC2995 /* UserRouter.swift in Sources */,
+				3604157A1F893A1100A8794E /* QuestionObject.swift in Sources */,
 				36EEDAFD1F7DE16E00C07497 /* UserServices.swift in Sources */,
 				368231401F7DE96A00AC2995 /* Helpers.swift in Sources */,
 				368231391F7DE8EE00AC2995 /* Extensions+NSError.swift in Sources */,
 				36001AFC1F84D82F0031A1EE /* Extensions+Int.swift in Sources */,
 				3682313D1F7DE8EE00AC2995 /* Extensions+UINavigationController.swift in Sources */,
+				3604157E1F89FCF000A8794E /* QuestionsCell.swift in Sources */,
 				3682313C1F7DE8EE00AC2995 /* Extensions+UIImageView.swift in Sources */,
 				36EEDAF61F7DE0D300C07497 /* UserObject.swift in Sources */,
 				367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */,

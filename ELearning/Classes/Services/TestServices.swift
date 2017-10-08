@@ -40,18 +40,49 @@ class TestServices: NSObject {
         }
     }
     
+    func getTest(withId id: String, completionHandler: @escaping (_ test: TestObject?, _ error: String? ) -> Void ) {
+        let parameter: [String: Any] = [
+            "testId": id
+        ]
+        
+        Alamofire.request(UserRouter.getTest(parameter))
+        .validate()
+        .response { (res) in
+            if let error = res.error {
+                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            guard let data = res.data, let json = data.toDictionary() else {
+                return completionHandler(nil, "Invalid data format")
+            }
+            
+            if let errors = json["errors"] as? JSON {
+                if let message = errors["message"] as? String {
+                    return completionHandler(nil, message)
+                } else {
+                    return completionHandler(nil, "Get test error")
+                }
+            }
+            
+            guard let test = TestObject(json: json) else {
+                return completionHandler(nil, "Cast to test json have been failed")
+            }
+            
+            return completionHandler(test, nil)
+            
+        }
+    }
+    
     /*
      * FUNCTIONS FOR STUDENTS
      */
     
-    // MARK: - GET TESTS
+    // MARK: - GET TEST BY ID
     
     func loadTest(withId id: String, completionHandler: @escaping (_ test: TestObject?, _ error: String?) -> Void) {
         let parameter: [String: Any] = [
             "testId": id
         ]
-        
-        print(id)
         
         Alamofire.request(StudentRouter.loadTest(parameter))
         .validate()
@@ -87,7 +118,7 @@ class TestServices: NSObject {
                     }
                     
                     //Get informations Teacher
-                    UserServices.shared.getInformations(byId: id, { (teacher, error) in
+                    UserServices.shared.getInformations(byId: id, completionHandler: { (teacher, error) in
                         print("OK")
                         if error == nil {                            
                             teacher?.id = id

@@ -234,61 +234,69 @@ class UserServices: NSObject {
         }
     }
     
-    // MARK: - GET INFORMATIONS
-    func getInformations(_ completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> ()) {
+    // MARK: - GET INFORMATIONS BY ID
+    func getInformations(byId id: String, completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> () ) {
         
-        /*
-         {
-         "email": "lamquanguit@gmail.com",
-         "fullname": "Lâm Quang Lâm",
-         "birthdate": "1995-07-03T00:00:00.000Z",
-         "role": "teacher"
-         }
-         */
+        let parameter: [String: Any] = [
+            "id" : id
+        ]
         
-        
-        Alamofire.request(UserRouter.getInfo())
-            .validate()
-            .response { (res) in
-                //check errors
-                if let err = res.error {
-                    return completionHandler(nil, Helpers.handleError(res.response, error: err as NSError))
+        Alamofire.request(UserRouter.getInfoById(parameter))
+        .validate()
+        .response { (res) in
+            if let error = res.error {
+                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            guard let data = res.data, let json = data.toDictionary() else {
+                return completionHandler(nil, "Invalid data format")
+            }
+            
+            if let errors = json["errors"] as? [String] {
+                if errors.count > 0 {
+                    return completionHandler(nil, errors[0])
                 }
-                
-                guard let data = res.data else {
-                    return completionHandler(nil, "Invalid data format")
-                }
-                
-                //try parse data to json
-                if let json = data.toDictionary() {
-                    //print(json)
-                    //check format
-                    if let errs = json["errors"] as? [String] {
-                        //print(errs)
-                        if errs.count > 0 {
-                            return completionHandler(nil, errs[0])
-                        }
-                    }
-                    
-                    guard let userInfo = UserObject(json: json) else {
-                        return completionHandler(nil, "Invalid data format")
-                    }
-                    
-                    return completionHandler(userInfo, nil)
-                    
-                } else {
-                    return completionHandler(nil, "Invalid data format")
-                }
+            }
+            
+            guard let user = UserObject(json: json) else {
+                return completionHandler(nil, "Cast to user json have been failed")
+            }
+            
+            return completionHandler(user, nil)
         }
+        
     }
     
-    func getInformations(byId id: String, _ completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> () ) {
+    // MARK: - GET INFORMATIONS BY TOKEN
+    func getInformations(completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> () ) {
         
-        let teacher = UserObject()
-        teacher.id = id
-        teacher.fullname = "Lê Tuấn"
+        Alamofire.request(UserRouter.getInfoByToken())
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+                }
+                
+                guard let data = res.data, let json = data.toDictionary() else {
+                    return completionHandler(nil, "Invalid data format")
+                }
+                
+                if let errors = json["errors"] as? JSON {
+                    if let message = errors["message"] as? String {
+                        return completionHandler(nil, message)
+                    } else {
+                        return completionHandler(nil, "Get infomation failed")
+                    }
+                }
+                
+                guard let user = UserObject(json: json) else {
+                    return completionHandler(nil, "Cast to user json have been failed")
+                }
+                
+                return completionHandler(user, nil)
+        }
         
-        return completionHandler(teacher, nil)
     }
+
     
 }

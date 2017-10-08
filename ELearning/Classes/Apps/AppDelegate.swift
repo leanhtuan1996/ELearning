@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func signIn_Up(user: UserObject) {
-        UserManager.shared.currentUser = user
+        UserManager.shared.setCurrentUser(with: user)
         
         //set token to NSUserDefault & UserNetwork
         UserManager.shared.setToken(user.token)

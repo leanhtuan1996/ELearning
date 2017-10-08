@@ -47,13 +47,14 @@ class UserManager: NSObject {
     func verifyToken(_ completionHandler: @escaping(_ user: UserObject?, _ error: String?) -> Void) {
         if let token = userDefaults.object(forKey: "token") as? String {
             authToken = token
-            UserServices.shared.getInformations({ (user, error) in
+            UserServices.shared.getInformations(completionHandler: { (user, error) in
                 if let error = error {
                     return completionHandler(nil, error)
                 }
                 if let user = user {
-                   self.setToken(token)
-                   return completionHandler(user, nil)
+                    self.setToken(token)
+                    self.setCurrentUser(with: user)
+                    return completionHandler(user, nil)
                 }
             })
         } else {
@@ -65,5 +66,41 @@ class UserManager: NSObject {
         setToken()
         currentUser = nil
     }
+    
+    func getCurrentUser() -> UserObject? {
+        if let data = userDefaults.object(forKey: "User") as? Data {
+            if let user = NSKeyedUnarchiver.unarchiveObject(with: data) as? UserObject {
+                self.currentUser = user
+                return user
+            }
+            return nil
+        }
+        return nil
+    }
+    
+    func setCurrentUser(with user: UserObject?) {
+        if let user = user {
+            //set
+            addCurrentUser(with: user)
+        } else {
+            //delete
+            deleteCurrentUser()
+        }
+    }
+    
+    func addCurrentUser(with user: UserObject) {
+        //set
+        let userEncode:Data = NSKeyedArchiver.archivedData(withRootObject: user)
+        userDefaults.set(userEncode, forKey: "User")
+        userDefaults.synchronize()
+    }
+    
+    func deleteCurrentUser() {
+        if userDefaults.object(forKey: "User") != nil {
+            //remove
+            userDefaults.removeObject(forKey: "User")
+        }
+    }
+    
     
 }
