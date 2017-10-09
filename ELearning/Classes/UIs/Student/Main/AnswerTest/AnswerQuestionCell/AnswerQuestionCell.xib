@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bH-G4-bEF">
-                        <rect key="frame" x="5" y="5" width="403" height="25"/>
+                        <rect key="frame" x="5" y="5" width="113" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="Vhm-Qb-237"/>
                         </constraints>
@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5N-mt-dhD">
-                        <rect key="frame" x="5" y="35" width="408" height="22.5"/>
+                        <rect key="frame" x="5" y="35" width="4.5" height="22.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not completed yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGD-5E-vDp">
-                        <rect key="frame" x="5" y="87.5" width="408" height="22"/>
+                        <rect key="frame" x="5" y="87.5" width="141.5" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="yeS-mO-UI7"/>
                         </constraints>
@@ -52,63 +52,24 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGE-wi-GBT">
-                        <rect key="frame" x="418" y="0.0" width="100" height="122.5"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="send" translatesAutoresizingMaskIntoConstraints="NO" id="Fd8-dn-Jys">
-                                <rect key="frame" x="55" y="44" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="7VG-EE-T8s"/>
-                                    <constraint firstAttribute="width" constant="35" id="gjM-Wh-cwt"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="bcu-nA-vIu">
-                                <rect key="frame" x="10" y="44" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="5ZG-dn-He1"/>
-                                    <constraint firstAttribute="width" constant="35" id="JdH-zd-phe"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Fd8-dn-Jys" secondAttribute="trailing" constant="10" id="2Zp-qN-aoI"/>
-                            <constraint firstItem="bcu-nA-vIu" firstAttribute="centerY" secondItem="Fd8-dn-Jys" secondAttribute="centerY" id="45E-ZO-5XA"/>
-                            <constraint firstAttribute="width" constant="100" id="LTt-bH-BNK"/>
-                            <constraint firstItem="Fd8-dn-Jys" firstAttribute="centerY" secondItem="JGE-wi-GBT" secondAttribute="centerY" id="Oky-B5-Yo7"/>
-                            <constraint firstItem="Fd8-dn-Jys" firstAttribute="leading" secondItem="bcu-nA-vIu" secondAttribute="trailing" constant="10" id="uAk-7P-RPu"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nqF-D4-3qk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="26g-Fx-OsF"/>
-                    <constraint firstItem="JGE-wi-GBT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7Io-8B-bDh"/>
-                    <constraint firstAttribute="trailing" secondItem="JGE-wi-GBT" secondAttribute="trailing" id="AuH-oh-iU0"/>
-                    <constraint firstItem="JGE-wi-GBT" firstAttribute="leading" secondItem="E5N-mt-dhD" secondAttribute="trailing" constant="5" id="JLL-6f-gZQ"/>
                     <constraint firstItem="2bH-G4-bEF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="LJF-kW-nLe"/>
                     <constraint firstItem="nqF-D4-3qk" firstAttribute="top" secondItem="E5N-mt-dhD" secondAttribute="bottom" constant="5" id="MSp-aj-3Xw"/>
                     <constraint firstItem="E5N-mt-dhD" firstAttribute="top" secondItem="2bH-G4-bEF" secondAttribute="bottom" constant="5" id="PLV-Ws-7Ej"/>
                     <constraint firstItem="iGD-5E-vDp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="QrB-jw-B7P"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iGD-5E-vDp" secondAttribute="bottom" constant="5" id="VNc-0z-5gF"/>
                     <constraint firstItem="E5N-mt-dhD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="VTB-Lj-ELH"/>
-                    <constraint firstItem="JGE-wi-GBT" firstAttribute="leading" secondItem="iGD-5E-vDp" secondAttribute="trailing" constant="5" id="Ycr-e8-7SJ"/>
                     <constraint firstItem="2bH-G4-bEF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="b7N-6Z-9BI"/>
                     <constraint firstItem="iGD-5E-vDp" firstAttribute="top" secondItem="nqF-D4-3qk" secondAttribute="bottom" constant="5" id="cgK-DN-oaW"/>
-                    <constraint firstAttribute="bottom" secondItem="JGE-wi-GBT" secondAttribute="bottom" id="nAu-jd-7VY"/>
-                    <constraint firstItem="JGE-wi-GBT" firstAttribute="leading" secondItem="2bH-G4-bEF" secondAttribute="trailing" constant="10" id="oT5-zh-Kmm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imgPush" destination="45E-ZO-5XA" id="bkZ-Wq-Uw7"/>
-                <outlet property="imgRecord" destination="bcu-nA-vIu" id="NMC-eh-eJi"/>
                 <outlet property="lblQuestion" destination="E5N-mt-dhD" id="lWx-Yc-bLD"/>
                 <outlet property="lblStatus" destination="iGD-5E-vDp" id="iIz-AG-TJK"/>
             </connections>
             <point key="canvasLocation" x="77" y="131.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="record" width="35" height="35"/>
-        <image name="send" width="35" height="35"/>
-    </resources>
 </document>

@@ -10,6 +10,7 @@ import UIKit
 
 class AnswerTestVC: UIViewController {
     
+    
     var test: TestObject?
     let loading = UIActivityIndicatorView()
     @IBOutlet weak var tblQuestions: UITableView!
@@ -29,7 +30,7 @@ class AnswerTestVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        loadTest()
+        
     }
     
     @IBAction func btnDone(_ sender: Any) {
@@ -53,22 +54,15 @@ class AnswerTestVC: UIViewController {
         }
     }
     
-    func showPopupRecording() {
-        if let sb = storyboard?.instantiateViewController(withIdentifier: "PopupRecordQuestionVC") as? PopupRecordQuestionVC {
-            self.addChildViewController(sb)
-            sb.view.frame = self.view.frame
-            self.view.addSubview(sb.view)
-            sb.didMove(toParentViewController: self)
-            sb.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
-            
-        }
+    override func willMove(toParentViewController parent: UIViewController?) {
+        loadTest()
     }
     
     func pushAnswer() {
         
     }
     
-    func statusQuestionHandler(withQuestion question: QuestionObject) -> String {
+    func isCompleted(withQuestion question: QuestionObject) -> Bool {
         if let answers = test?.answers, let idQuestion = question.id {
             if answers.contains(where: { (answer) -> Bool in
                 if let id = answer.questionId {
@@ -77,18 +71,15 @@ class AnswerTestVC: UIViewController {
                 return false
                 
             }) {
-                return "Completed"
-            } else {
-                return "Not completed yet"
+                return true
             }
         }
-        return "Not completed yet"
+        return false
     }
-    
 }
 
 
-extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource {
+extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource, TestDataDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return test?.questions?.count ?? 0
     }
@@ -100,15 +91,47 @@ extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource {
         
         if let questions = test?.questions {
             cell.question = questions[indexPath.row]
-            cell.lblStatus.text = statusQuestionHandler(withQuestion: questions[indexPath.row])
+            
+            if isCompleted(withQuestion: questions[indexPath.row]) {
+                cell.lblStatus.text = "Completed"
+            } else {
+                cell.lblStatus.text = "Not Completed yet"
+            }
+            
+            
             cell.lblQuestion.text = questions[indexPath.row].question
         }
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let questions = test?.questions else {
+            return
+        }
+        
+        if !isCompleted(withQuestion: questions[indexPath.row]) {
+            if let sb = storyboard?.instantiateViewController(withIdentifier: "PopupRecordQuestionVC") as? PopupRecordQuestionVC {
+                sb.question = questions[indexPath.row]
+                sb.idTest = test?.id
+                self.addChildViewController(sb)
+                sb.view.frame = self.view.frame
+                self.view.addSubview(sb.view)
+                sb.delegate = self
+                sb.didMove(toParentViewController: self)
+                sb.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+            }
+        } else {
+            self.showAlert("This question has been completed!", title: "Error", buttons: nil)
+        }
+    }
+    
+    func reloadData() {
+       self.loadTest()
+    }
 }
 
-protocol AnswerQuestionTestDelegate {
-    func recordQuestion() -> Void
-    func submitRecord() -> Void
+protocol TestDataDelegate {
+    func reloadData() -> Void
 }

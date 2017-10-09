@@ -66,4 +66,11 @@ class Helpers: NSObject {
         }
         return "Error Not Found"
     }
+    
+    static func getDucumentDirectory() -> URL {
+        
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        
+        return path[0]
+    }
 }

@@ -58,6 +58,7 @@ enum StudentRouter: URLRequestConvertible {
         case .joinTest(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .answerTest(let parameters):
+            urlRequest.setValue("multipart/form-data", forHTTPHeaderField: "Content-type")
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
         

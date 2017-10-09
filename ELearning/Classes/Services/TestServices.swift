@@ -11,7 +11,7 @@ import Alamofire
 import Gloss
 
 class TestServices: NSObject {
-
+    
     static let shared = TestServices()
     
     /*
@@ -26,7 +26,7 @@ class TestServices: NSObject {
                 if let error = res.error {
                     return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
                 }
-                                
+                
                 guard let data = res.data else {
                     return completionHandler(nil, "Invalid data format")
                 }
@@ -46,30 +46,30 @@ class TestServices: NSObject {
         ]
         
         Alamofire.request(UserRouter.getTest(parameter))
-        .validate()
-        .response { (res) in
-            if let error = res.error {
-                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
-            }
-            
-            guard let data = res.data, let json = data.toDictionary() else {
-                return completionHandler(nil, "Invalid data format")
-            }
-            
-            if let errors = json["errors"] as? JSON {
-                if let message = errors["message"] as? String {
-                    return completionHandler(nil, message)
-                } else {
-                    return completionHandler(nil, "Get test error")
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
                 }
-            }
-            
-            guard let test = TestObject(json: json) else {
-                return completionHandler(nil, "Cast to test json have been failed")
-            }
-            
-            return completionHandler(test, nil)
-            
+                
+                guard let data = res.data, let json = data.toDictionary() else {
+                    return completionHandler(nil, "Invalid data format")
+                }
+                
+                if let errors = json["errors"] as? JSON {
+                    if let message = errors["message"] as? String {
+                        return completionHandler(nil, message)
+                    } else {
+                        return completionHandler(nil, "Get test error")
+                    }
+                }
+                
+                guard let test = TestObject(json: json) else {
+                    return completionHandler(nil, "Cast to test json have been failed")
+                }
+                
+                return completionHandler(test, nil)
+                
         }
     }
     
@@ -87,60 +87,60 @@ class TestServices: NSObject {
         print("GET TEST WITH ID: \(id)")
         
         Alamofire.request(StudentRouter.loadTest(parameter))
-        .validate()
-        .response { (res) in
-            if let error = res.error {
-                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
-            }
-            
-            guard let data = res.data else {
-                print("1")
-                return completionHandler(nil, "Invalid data format")
-            }
-            
-            if let responeJSON = data.toDictionary() {
-                //if error
-                if let error = responeJSON["errors"] as? [String] {
-                    if error.count > 0 {
-                        return completionHandler(nil, error[0])
-                    }
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
                 }
                 
-//                guard let testJSON = responeJSON as? JSON else {
-//                    print("2")
-//                    return completionHandler(nil, "Invalid data format")
-//                }
+                guard let data = res.data else {
+                    print("1")
+                    return completionHandler(nil, "Invalid data format")
+                }
                 
-                if let test = TestObject(json: responeJSON) {
-                    
-                    guard let id = test.byTeacher?.id else {
-                        print("Id teacher not found")
-                        return completionHandler(test, nil)
+                if let responeJSON = data.toDictionary() {
+                    //if error
+                    if let error = responeJSON["errors"] as? [String] {
+                        if error.count > 0 {
+                            return completionHandler(nil, error[0])
+                        }
                     }
                     
-                    //Get informations Teacher
-                    UserServices.shared.getInformations(byId: id, completionHandler: { (teacher, error) in
-                        //print("OK")
-                        if error == nil {                            
-                            teacher?.id = id
-                            test.byTeacher = teacher
+                    //                guard let testJSON = responeJSON as? JSON else {
+                    //                    print("2")
+                    //                    return completionHandler(nil, "Invalid data format")
+                    //                }
+                    
+                    if let test = TestObject(json: responeJSON) {
+                        
+                        guard let id = test.byTeacher?.id else {
+                            print("Id teacher not found")
                             return completionHandler(test, nil)
                         }
-                        return completionHandler(test, nil)
-                    })
+                        
+                        //Get informations Teacher
+                        UserServices.shared.getInformations(byId: id, completionHandler: { (teacher, error) in
+                            //print("OK")
+                            if error == nil {
+                                teacher?.id = id
+                                test.byTeacher = teacher
+                                return completionHandler(test, nil)
+                            }
+                            return completionHandler(test, nil)
+                        })
+                        
+                    } else {
+                        print("3")
+                        return completionHandler(nil, "Invalid data format")
+                    }
+                    
                     
                 } else {
-                    print("3")
+                    print("4")
                     return completionHandler(nil, "Invalid data format")
                 }
                 
                 
-            } else {
-                print("4")
-                return completionHandler(nil, "Invalid data format")
-            }
-           
-            
         }
     }
     
@@ -150,35 +150,95 @@ class TestServices: NSObject {
         ]
         
         Alamofire.request(StudentRouter.joinTest(parameters))
-        .validate()
-        .response { (res) in
-            if let error = res.error {
-                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
-            }
-            
-            guard let data = res.data, let json = data.toDictionary() else {
-                return completionHandler(nil, "Invalid data format")
-            }
-            
-            if let errors = json["errors"] as? [String] {
-                if errors.count > 0 {
-                    return completionHandler(nil, errors[0])
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
                 }
-                //
-            }
-            
-            if let isJoin = json["joint"] as? Bool {
-                if isJoin {
-                    print("JOINT")
-                    return completionHandler(true, nil)
+                
+                guard let data = res.data, let json = data.toDictionary() else {
+                    return completionHandler(nil, "Invalid data format")
                 }
-            }
-            
-            return completionHandler(nil, nil)
+                
+                if let errors = json["errors"] as? [String] {
+                    if errors.count > 0 {
+                        return completionHandler(nil, errors[0])
+                    }
+                    //
+                }
+                
+                if let isJoin = json["joint"] as? Bool {
+                    if isJoin {
+                        print("JOINT")
+                        return completionHandler(true, nil)
+                    }
+                }
+                
+                return completionHandler(nil, nil)
         }
     }
     
-    func doTest() {
+    func answerTest(testId: String, questionId: String, completionHandler: @escaping (_ error: String?) -> Void ) {
+        
+        let URL = Helpers.getDucumentDirectory().appendingPathComponent("\(questionId).m4v")
+        
+        if FileManager.default.fileExists(atPath: URL.path) {
+            
+            guard let audioData = NSData(contentsOf: URL) else {
+                return completionHandler("Convert audio to data has been failed")
+            }
+            
+            let parameters = [
+                "testId" : testId,
+                "questionId" : questionId,
+                "answer" : "\(questionId).m4v"
+            ]
+            
+            Alamofire.upload(multipartFormData:{ multipartFormData in
+                
+                for (key, value) in parameters {
+                    // multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+                    multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    
+                }
+                
+                //multipartFormData.append(audioData as Data, withName: "answer")
+                multipartFormData.append(audioData as Data, withName: "answer", fileName: "answer", mimeType: "application/octet-stream")
+                
+            }, usingThreshold:UInt64.init(),
+            to: "\(baseURLString)/student/save-answer",
+            method:.post,
+            headers:["x-access-token": authToken ?? ""],
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.response(completionHandler: { (res) in
+                        if let error = res.error {
+                            return completionHandler(Helpers.handleError(res.response, error: error as NSError))
+                        }
+                        
+                        guard let data = res.data, let json = data.toDictionary() else {
+                            return completionHandler("Invalid data format")
+                        }
+                        
+                        if let errors = json["errors"] as? [String] {
+                            if errors.count > 0 {
+                                return completionHandler(errors[0])
+                            }
+                        }
+                        
+                        return completionHandler(nil)
+                        
+                    })
+                case .failure(let encodingError):
+                    return completionHandler(encodingError.localizedDescription)
+                }
+            })
+            
+            
+        } else {
+            return completionHandler("Path audio not found")
+        }
         
     }
     
