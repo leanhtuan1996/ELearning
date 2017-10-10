@@ -27,7 +27,7 @@ class TestObject: NSObject, Glossy {
             self.id = id
         }
         
-        //for loadTest() function in TestServices
+        //for loadTest() & getNotice function in TestServices
         if let id: String = "testId" <~~ json {
             self.id = id
         }

@@ -27,6 +27,9 @@ enum UserRouter: URLRequestConvertible {
     case getTest([String: Any])
     case getTests()
     case getMyTests()
+    case getSeenNotices()
+    case getUnSeenNotices()
+    case getNotice([String: Any])
     
     //Variable Method
     var method: Alamofire.HTTPMethod {
@@ -49,6 +52,12 @@ enum UserRouter: URLRequestConvertible {
             return .get
         case .getMyTests:
             return .get
+        case .getSeenNotices:
+            return .get
+        case .getUnSeenNotices:
+            return .get
+        case .getNotice:
+            return .post
         }
     }
     
@@ -72,7 +81,13 @@ enum UserRouter: URLRequestConvertible {
         case .getTests:
             return "/get-tests"
         case .getMyTests:
-            return "/get-my-tests"            
+            return "/get-my-tests"
+        case .getSeenNotices:
+            return "/get-seen-notices"
+        case .getUnSeenNotices:
+            return "/get-unseen-notices"
+        case .getNotice:
+            return "/get-notice"
         }
     }
     
@@ -107,6 +122,12 @@ enum UserRouter: URLRequestConvertible {
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         case .getMyTests():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .getSeenNotices():
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .getUnSeenNotices():
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .getNotice(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
         
     }

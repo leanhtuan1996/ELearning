@@ -15,6 +15,9 @@ enum TeacherRouter: URLRequestConvertible {
     case newTest([String : Any])
     case getStudentInfo([String: Any])
     case loadResult([String: Any])
+    case getMyTests()
+    case giveScore([String: Any])
+    
     //Variable Method
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -23,6 +26,10 @@ enum TeacherRouter: URLRequestConvertible {
         case .getStudentInfo:
             return .post
         case .loadResult:
+            return .post
+        case .getMyTests:
+            return .get
+        case .giveScore:
             return .post
         }
     }
@@ -36,6 +43,11 @@ enum TeacherRouter: URLRequestConvertible {
             return "/teacher/get-student-info"
         case .loadResult:
             return "/teacher/load-result"
+        case .getMyTests:
+            return "/teacher/get-my-tests"
+        case .giveScore:
+            return "/teacher/give-score"
+        
         }
     }
     
@@ -58,6 +70,11 @@ enum TeacherRouter: URLRequestConvertible {
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .loadResult(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getMyTests:
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .giveScore(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        
         }
         
     }

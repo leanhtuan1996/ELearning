@@ -206,33 +206,33 @@ class TestServices: NSObject {
                 multipartFormData.append(audioData as Data, withName: "answer", fileName: "\(questionId).m4v", mimeType: "application/octet-stream")
                 
             }, usingThreshold:UInt64.init(),
-            to: "\(baseURLString)/student/save-answer",
-            method:.post,
-            headers:["x-access-token": authToken ?? ""],
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .success(let upload, _, _):
-                    upload.response(completionHandler: { (res) in
-                        if let error = res.error {
-                            return completionHandler(Helpers.handleError(res.response, error: error as NSError))
-                        }
-                        
-                        guard let data = res.data, let json = data.toDictionary() else {
-                            return completionHandler("Invalid data format")
-                        }
-                        
-                        if let errors = json["errors"] as? [String] {
-                            if errors.count > 0 {
-                                return completionHandler(errors[0])
+               to: "\(baseURLString)/student/save-answer",
+                method:.post,
+                headers:["x-access-token": authToken ?? ""],
+                encodingCompletion: { encodingResult in
+                    switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.response(completionHandler: { (res) in
+                            if let error = res.error {
+                                return completionHandler(Helpers.handleError(res.response, error: error as NSError))
                             }
-                        }
-                        
-                        return completionHandler(nil)
-                        
-                    })
-                case .failure(let encodingError):
-                    return completionHandler(encodingError.localizedDescription)
-                }
+                            
+                            guard let data = res.data, let json = data.toDictionary() else {
+                                return completionHandler("Invalid data format")
+                            }
+                            
+                            if let errors = json["errors"] as? [String] {
+                                if errors.count > 0 {
+                                    return completionHandler(errors[0])
+                                }
+                            }
+                            
+                            return completionHandler(nil)
+                            
+                        })
+                    case .failure(let encodingError):
+                        return completionHandler(encodingError.localizedDescription)
+                    }
             })
             
         } else {
@@ -246,15 +246,81 @@ class TestServices: NSObject {
      * FUNCTIONS FOR TEACHERS
      */
     
-    func getMyTests() {
+    func getMyTests(completionHandler: @escaping (_ test: [TestObject]?, _ error: String?) -> Void) {
+        Alamofire.request(TeacherRouter.getMyTests())
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+                }
+                
+                guard let data = res.data else {
+                    return completionHandler(nil, "Invalid data format")
+                }
+                
+                if let test = [TestObject].from(data: data) {
+                    return completionHandler(test, nil)
+                } else {
+                    return completionHandler(nil, "Invalid data format")
+                }
+        }
+    }
+    
+    func newTest(withTest test: TestObject, completionHandler: @escaping (_ error: String?) -> Void) {
+        
+        guard let testJson = test.toJSON() else {
+            return completionHandler("Try Parse to json has been failed")
+        }
+        
+        Alamofire.request(TeacherRouter.newTest(testJson))
+        .validate()
+        .response { (res) in
+            if let error = res.error {
+                return completionHandler(Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            guard let data = res.data, let json = data.toDictionary() else {
+                return completionHandler("Invalid data format")
+            }
+            
+            if let errors = json["errors"] as? [String] {
+                if errors.count > 0 {
+                    return completionHandler(errors[0])
+                }
+            }
+            
+            return completionHandler(nil)
+        }
         
     }
     
-    func newTest() {
+    func getStudentInfo(withId idStudent: String, completionHandler: @escaping(_ student: UserObject?, _ error: String?) -> Void) {
+        let parameter: [String: Any] = [
+            "StudentId" : idStudent
+        ]
         
-    }
-    
-    func getStudentInfo() {
-        
+        Alamofire.request(TeacherRouter.getStudentInfo(parameter))
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+                }
+                
+                guard let data = res.data, let json = data.toDictionary() else {
+                    return completionHandler(nil, "Invalid data format")
+                }
+                
+                if let errors = json["errors"] as? [String] {
+                    if errors.count > 0 {
+                        return completionHandler(nil, errors[0])
+                    }
+                }
+                
+                guard let user = UserObject(json: json) else {
+                    return completionHandler(nil, "Cast to user json have been failed")
+                }
+                
+                return completionHandler(user, nil)
+        }
     }
 }

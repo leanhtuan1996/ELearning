@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showMainViewTeacher() {
-        if let sb = UIStoryboard(name: "Teacher", bundle: nil).instantiateViewController(withIdentifier: "TeacherMainVC") as? TeacherMainVC {
+        if let sb = UIStoryboard(name: "Teacher", bundle: nil).instantiateViewController(withIdentifier: "tabBar") as? UITabBarController {
             self.window?.rootViewController = sb
         }
     }
