@@ -15,7 +15,7 @@ class LaunchVC: UIViewController {
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             //print("aaa")
-            //UserManager.shared.signOut()
+           // UserManager.shared.signOut()
             if UserManager.shared.isLoggedIn() {
                 
                 //verify token

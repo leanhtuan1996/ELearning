@@ -324,4 +324,66 @@ class TestServices: NSObject {
                 return completionHandler(user, nil)
         }
     }
+    
+    func loadResult(withStudentId studentId: String, withTestId testId: String, completionHandler: @escaping (_ test: TestObject?, _ error: String? ) -> Void ) {
+        let parameters: [String: Any] = [
+            "testId" : testId,
+            "studentId" : studentId
+        ]
+        
+        Alamofire.request(TeacherRouter.loadResult(parameters))
+        .validate()
+        .response { (res) in
+            if let error = res.error {
+                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            guard let data = res.data, let json = data.toDictionary() else {
+                return completionHandler(nil, "Invalid data format")
+            }
+            
+            if let errors = json["errors"] as? JSON {
+                if let message = errors["message"] as? String {
+                    return completionHandler(nil, message)
+                } else {
+                    return completionHandler(nil, "Get test error")
+                }
+            }
+            
+            guard let test = TestObject(json: json) else {
+                return completionHandler(nil, "Cast to test json have been failed")
+            }
+            
+            return completionHandler(test, nil)
+        }
+    }
+    
+    func giveScore(withTestId testId: String, withStudentId studentId: String, withQuestionId questionId: String, withScore score: Int, completionHandler: @escaping (_ error: String?) -> Void) {
+        let parameters: [String: Any] = [
+            "testId" : testId,
+            "studentId" : studentId,
+            "questionId" : questionId,
+            "score" : score
+        ]
+        
+        Alamofire.request(TeacherRouter.giveScore(parameters))
+        .validate()
+        .response { (res) in
+            if let error = res.error {
+                return completionHandler(Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            guard let data = res.data, let json = data.toDictionary() else {
+                return completionHandler("Invalid data format")
+            }
+            
+            if let errors = json["errors"] as? [String] {
+                if errors.count > 0 {
+                    return completionHandler(errors[0])
+                }
+            }
+            
+            return completionHandler(nil)
+        }
+    }
 }

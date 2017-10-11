@@ -33,5 +33,13 @@ extension String {
         }
         return false
     }
+    
+    func toInt() -> Int? {
+        
+        if let int = Int(self) {
+            return int
+        }
+        return nil
+    }
 }
 

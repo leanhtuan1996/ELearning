@@ -19,11 +19,16 @@ class NoticeObject: NSObject, Decodable {
     
     required init?(json: JSON) {
         self.id = "_id" <~~ json
-        if let test: TestObject = "test" <~~ json {
+        if let testId: String = "testId" <~~ json, let name: String = "name" <~~ json {
+            let test = TestObject()
+            test.id = testId
+            test.name = name
             self.test = test
         }
         
-        if let student: UserObject = "student" <~~ json {
+        if let studentId: String = "studentId" <~~ json {
+            let student = UserObject()
+            student.id = studentId
             self.student = student
         }
         

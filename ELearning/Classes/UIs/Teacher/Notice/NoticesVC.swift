@@ -51,6 +51,21 @@ extension NoticesVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.lblNoticeInfo.text = "\(notices[indexPath.row].test?.name ?? "") has just completed by student"
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "GiveScoreTestVC") as? GiveScoreTestVC, let test = notices[indexPath.row].test else {
+            return
+        }
+        
+        vc.test = test
+        vc.studentId = notices[indexPath.row].student?.id
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
     }
 }
