@@ -70,6 +70,6 @@ class PopupGiveScoreVC: UIViewController {
     }
 
     @IBAction func btnCloseTapped(_ sender: Any) {
-        
+        closePopup()
     }
 }

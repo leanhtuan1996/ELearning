@@ -78,13 +78,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of questions in this test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hU5-M3-V7w">
-                                <rect key="frame" x="82" y="134" width="210" height="21"/>
+                                <rect key="frame" x="82" y="139" width="210" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LhC-w9-IaD">
-                                <rect key="frame" x="0.0" y="165" width="375" height="457"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPQ-lK-NQc">
@@ -97,6 +97,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnDoneTapped:" destination="nUM-5g-res" eventType="touchUpInside" id="i4d-9N-Kl8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmm-lE-N1u">
                                 <rect key="frame" x="10" y="81" width="92" height="17"/>
@@ -104,8 +107,8 @@
                                 <color key="textColor" red="0.34940767290000002" green="0.3454156518" blue="0.36454087499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le Tuan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-Oy-7nv">
-                                <rect key="frame" x="10" y="98" width="355" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-Oy-7nv">
+                                <rect key="frame" x="10" y="103" width="355" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -118,7 +121,7 @@
                             <constraint firstItem="LhC-w9-IaD" firstAttribute="top" secondItem="hU5-M3-V7w" secondAttribute="bottom" constant="10" id="ASE-8I-X2c"/>
                             <constraint firstItem="hU5-M3-V7w" firstAttribute="centerX" secondItem="285-HL-iL9" secondAttribute="centerX" id="BrT-nd-Y7P"/>
                             <constraint firstAttribute="trailing" secondItem="jPQ-lK-NQc" secondAttribute="trailing" id="G5u-aq-6yK"/>
-                            <constraint firstItem="mgd-Oy-7nv" firstAttribute="top" secondItem="zmm-lE-N1u" secondAttribute="bottom" id="NN0-eF-6yA"/>
+                            <constraint firstItem="mgd-Oy-7nv" firstAttribute="top" secondItem="zmm-lE-N1u" secondAttribute="bottom" constant="5" id="NN0-eF-6yA"/>
                             <constraint firstAttribute="trailing" secondItem="LhC-w9-IaD" secondAttribute="trailing" id="YJz-ZN-5RT"/>
                             <constraint firstItem="hU5-M3-V7w" firstAttribute="top" secondItem="mgd-Oy-7nv" secondAttribute="bottom" constant="15" id="YyL-wr-2MM"/>
                             <constraint firstItem="zmm-lE-N1u" firstAttribute="top" secondItem="cOF-7p-6jG" secondAttribute="bottom" constant="15" id="dE7-K3-Snd"/>

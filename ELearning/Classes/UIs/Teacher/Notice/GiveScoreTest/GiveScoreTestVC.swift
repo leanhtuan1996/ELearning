@@ -28,6 +28,7 @@ class GiveScoreTestVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         loadResultTest()
         loadStudent()
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     func loadResultTest() {
@@ -74,6 +75,9 @@ class GiveScoreTestVC: UIViewController {
         }
         
     }
+    @IBAction func btnDoneTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
@@ -105,7 +109,6 @@ extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
         popup.view.frame = self.view.frame
         self.view.addSubview(popup.view)
         popup.didMove(toParentViewController: self)
-        
         popup.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
     }
 }

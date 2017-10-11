@@ -24,6 +24,7 @@ class NoticesVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadUnseenNotices()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func loadUnseenNotices() {
