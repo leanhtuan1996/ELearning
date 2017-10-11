@@ -65,7 +65,7 @@ enum TeacherRouter: URLRequestConvertible {
         
         switch self {
         case .newTest(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+            return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
         case .getStudentInfo(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .loadResult(let parameters):

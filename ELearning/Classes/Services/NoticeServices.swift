@@ -18,7 +18,7 @@ class NoticeServices: NSObject {
      */
     
     func getSeenNotices(completionHandler: @escaping (_ notice: [NoticeObject]?, _ error: String?) -> Void) {
-        Alamofire.request(TeacherRouter.getSeenNotices())
+        Alamofire.request(UserRouter.getSeenNotices())
         .validate()
         .response { (res) in
             if let error = res.error {
@@ -38,7 +38,7 @@ class NoticeServices: NSObject {
     }
     
     func getUnSeenNotices(completionHandler: @escaping (_ notice: [NoticeObject]?, _ error: String?) -> Void) {
-        Alamofire.request(TeacherRouter.getUnSeenNotices())
+        Alamofire.request(UserRouter.getUnSeenNotices())
             .validate()
             .response { (res) in
                 if let error = res.error {
@@ -64,7 +64,7 @@ class NoticeServices: NSObject {
             "testId" : idTest
         ]
         
-        Alamofire.request(TeacherRouter.getNotice(parameters))
+        Alamofire.request(UserRouter.getNotice(parameters))
         .validate()
         .response { (res) in
             if let error = res.error {

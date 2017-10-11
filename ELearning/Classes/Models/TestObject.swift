@@ -55,7 +55,7 @@ class TestObject: NSObject, Glossy {
             "id" ~~> self.id,
             "name" ~~> self.name,
             "idTeacher" ~~> self.byTeacher?.id,
-            "content" ~~> self.questions
+            "contents" ~~> self.questions
             ])
     }
     
