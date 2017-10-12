@@ -30,6 +30,7 @@ enum UserRouter: URLRequestConvertible {
     case getSeenNotices()
     case getUnSeenNotices()
     case getNotice([String: Any])
+    case getAnswerVoice([String: Any])
     
     //Variable Method
     var method: Alamofire.HTTPMethod {
@@ -57,6 +58,8 @@ enum UserRouter: URLRequestConvertible {
         case .getUnSeenNotices:
             return .get
         case .getNotice:
+            return .post
+        case .getAnswerVoice:
             return .post
         }
     }
@@ -88,6 +91,8 @@ enum UserRouter: URLRequestConvertible {
             return "/get-unseen-notices"
         case .getNotice:
             return "/get-notice"
+        case .getAnswerVoice:
+            return "/get-answer"
         }
     }
     
@@ -127,6 +132,8 @@ enum UserRouter: URLRequestConvertible {
         case .getUnSeenNotices():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         case .getNotice(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getAnswerVoice(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
         

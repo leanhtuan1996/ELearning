@@ -48,7 +48,7 @@ class Helpers: NSObject {
     static func handleError(_ response: HTTPURLResponse?, error: NSError) -> String {
         
         guard let res = response else {
-            return "Error not found"
+            return "Server not response"
         }
         
         if error.isNoInternetConnectionError() {

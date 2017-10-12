@@ -73,6 +73,34 @@ class TestServices: NSObject {
         }
     }
     
+    func getAnswerVoice(withAnswer answer: String, completionHandler: @escaping (_ Url: URL?, _ error: String? ) -> Void) {
+        
+        let url = Helpers.getDucumentDirectory().appendingPathComponent("\(answer)")
+        
+        if FileManager.default.fileExists(atPath: url.path) {
+            print("File is exists")
+            return completionHandler(url, nil)
+        }
+        
+        let parameter: [String: Any] = [
+            "fileName" : answer
+        ]
+        
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            return (url, [.createIntermediateDirectories, .removePreviousFile])
+        }
+        
+        Alamofire.download(UserRouter.getAnswerVoice(parameter), to: destination).response { (res) in
+            
+            if let error = res.error {
+                print(error.localizedDescription)
+                return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+            }
+            
+            return completionHandler(res.destinationURL, nil)
+        }
+    }
+    
     /*
      * FUNCTIONS FOR STUDENTS
      */

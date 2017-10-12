@@ -73,8 +73,12 @@ class GiveScoreTestVC: UIViewController {
             }
             
         }
+    }
+    
+    func loadAnswerVoice(withFileName path: String) {
         
     }
+    
     @IBAction func btnDoneTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -101,14 +105,30 @@ extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        //print(test.questions?[indexPath.row].question)
-        popup.idStudent = studentId
-        popup.answer = answer
-        popup.questionName = questionName
-        self.addChildViewController(popup)
-        popup.view.frame = self.view.frame
-        self.view.addSubview(popup.view)
-        popup.didMove(toParentViewController: self)
-        popup.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+        loading.showLoadingDialog(self)
+        TestServices.shared.getAnswerVoice(withAnswer: answer.fileName ?? "") { (data, error) in
+            self.loading.stopAnimating()
+            if let error = error {
+                self.showAlert(error, title: "Error", buttons: nil)
+                return
+            }
+            
+            if let data = data {
+                popup.idStudent = self.studentId
+                popup.answer = answer
+                popup.questionName = questionName
+                popup.dataAnswerVoiceURL = data
+                popup.idTest = self.test.id
+                self.addChildViewController(popup)
+                popup.view.frame = self.view.frame
+                self.view.addSubview(popup.view)
+                popup.didMove(toParentViewController: self)
+                popup.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+            } else {
+                self.showAlert("Get Data Voice has been failed", title: "Error", buttons: nil)
+                return
+            }
+        }
+        
     }
 }

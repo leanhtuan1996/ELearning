@@ -12,6 +12,7 @@ class AnswerCell: UITableViewCell {
 
     @IBOutlet weak var lblName: UILabel!
     var test = TestObject()
+    var pathVoice: String?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
