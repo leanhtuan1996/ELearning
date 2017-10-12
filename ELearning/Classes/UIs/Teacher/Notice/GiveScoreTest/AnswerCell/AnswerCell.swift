@@ -11,6 +11,7 @@ import UIKit
 class AnswerCell: UITableViewCell {
 
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblStatus: UILabel!
     var test = TestObject()
     var pathVoice: String?
     override func awakeFromNib() {

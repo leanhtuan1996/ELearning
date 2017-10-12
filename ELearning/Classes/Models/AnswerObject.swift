@@ -13,6 +13,7 @@ class AnswerObject: NSObject, Glossy {
     var id: String?
     var questionId: String?
     var fileName: String?
+    var score: Int?
     
     override init() {
         
@@ -25,6 +26,7 @@ class AnswerObject: NSObject, Glossy {
         self.id = id
         self.questionId = questionId
         self.fileName = "fileName" <~~ json
+        self.score = "score" <~~ json
     }
     
     func toJSON() -> JSON? {

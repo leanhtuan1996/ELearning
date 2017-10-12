@@ -95,11 +95,24 @@ extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.lblName.text = self.test.questions?[indexPath.row].question
+        if self.test.answers?[indexPath.row].score == nil {
+            cell.lblStatus.text = "Not graded"
+            cell.lblStatus.textColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+        } else {
+            cell.lblStatus.text = "Graded"
+            cell.lblStatus.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if self.test.answers?[indexPath.row].score != nil {
+            self.showAlert("This answer has been graded", title: "Error", buttons: nil)
+            return
+        }
+        
         guard let popup = storyboard?.instantiateViewController(withIdentifier: "PopupGiveScoreVC") as? PopupGiveScoreVC, let answer = self.test.answers?[indexPath.row], let questionName = test.questions?[indexPath.row].question else {
             print("PopupGiveScore not found")
             return
@@ -123,7 +136,6 @@ extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
                 popup.view.frame = self.view.frame
                 self.view.addSubview(popup.view)
                 popup.didMove(toParentViewController: self)
-                popup.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
             } else {
                 self.showAlert("Get Data Voice has been failed", title: "Error", buttons: nil)
                 return

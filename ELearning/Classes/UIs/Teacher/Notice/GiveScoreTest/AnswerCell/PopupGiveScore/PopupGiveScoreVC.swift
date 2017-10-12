@@ -31,13 +31,14 @@ class PopupGiveScoreVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         popupView.layer.cornerRadius = 5
+        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+        openPopup()
         setUpPlayVoice()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         lblName.text = questionName
     }
-
     
     @IBAction func btnListenTapped(_ sender: Any) {
         if isListening {
@@ -77,9 +78,25 @@ class PopupGiveScoreVC: UIViewController {
     }
     
     func closePopup() {
-        self.didMove(toParentViewController: self)
-        self.removeFromParentViewController()
-        self.view.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            self.view.alpha = 0
+        }) { (finish) in
+            if finish {
+                self.didMove(toParentViewController: self)
+                self.removeFromParentViewController()
+                self.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    func openPopup() {
+        self.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        self.view.alpha = 0
+        UIView.animate(withDuration: 0.25) {
+            self.view.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.view.alpha = 1
+        }
     }
 
     @IBAction func btnCloseTapped(_ sender: Any) {

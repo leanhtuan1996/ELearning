@@ -442,7 +442,7 @@
         <scene sceneID="Bz2-c6-5eX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Ecp-HX-xdf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="alert" badgeValue="1" id="xQo-SD-4E7"/>
+                    <tabBarItem key="tabBarItem" title="" image="alert" id="xQo-SD-4E7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uvf-wD-7xh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
