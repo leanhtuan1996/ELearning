@@ -2,12 +2,13 @@
 //  AnswerObject.swift
 //  ELearning
 //
-//  Created by Lê Anh Tuấn on 10/8/17.
+//  Created by Lê Anh Tuấn on 10/12/17.
 //  Copyright © 2017 Lê Anh Tuấn. All rights reserved.
 //
 
 import UIKit
 import Gloss
+
 
 class AnswerObject: NSObject, Glossy {
     var id: String?

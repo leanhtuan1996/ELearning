@@ -13,13 +13,16 @@ class TeacherMainVC: UIViewController {
     @IBOutlet weak var tblTests: UITableView!
     
     var tests: [TestObject] = []
+    let loading = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tblTests.delegate = self
         tblTests.dataSource = self
-        tblTests.register(UINib(nibName: "TestsAnsweredCell", bundle: nil), forCellReuseIdentifier: "TestsAnsweredCell")
+        tblTests.register(UINib(nibName: "MyTestCell", bundle: nil), forCellReuseIdentifier: "MyTestCell")
+        tblTests.estimatedRowHeight = 80
+        
         
         //tabbar
         if let items = tabBarController?.tabBar.items {
@@ -37,13 +40,29 @@ class TeacherMainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        loadMyTests()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - FUNCTIONS
+    func loadMyTests() {
+        loading.showLoadingDialog(self)
+        TestServices.shared.getMyTests { (tests, error) in
+            self.loading.stopAnimating()
+            if let error = error {
+                self.showAlert(error, title: "Error", buttons: nil)
+                return
+            }
+            
+            if let tests = tests {
+                self.tests = tests
+                self.tblTests.reloadData()
+            }
+        }
     }
     
+    
+    // MARK: - ACTIONS
     @IBAction func btnAddTestTapped(_ sender: Any) {
         if let sb = storyboard?.instantiateViewController(withIdentifier: "NewTestVC") as? NewTestVC {
             self.navigationController?.pushViewController(sb, animated: true)
@@ -58,8 +77,14 @@ extension TeacherMainVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? TestsAnsweredCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyTestCell", for: indexPath) as? MyTestCell else {
             return UITableViewCell()
+        }
+        
+        cell.lblName.text = tests[indexPath.row].name
+        
+        if let results = tests[indexPath.row].results {
+            cell.lblTotal.text = results.count.toString()
         }
         
         return cell

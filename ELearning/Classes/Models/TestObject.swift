@@ -14,14 +14,12 @@ class TestObject: NSObject, Glossy {
     var name: String?
     var byTeacher: UserObject?
     var questions: [QuestionObject]?
-    var answers: [AnswerObject]?
+    //var answers: [AnswerObject]?
+    var results: [ResultObject]?
     
     override init() { }
     
     required init?(json: JSON) {
-        guard let idTeacher: String = "teacherId" <~~ json else {
-            return nil
-        }
         
         if let id: String = "_id" <~~ json {
             self.id = id
@@ -35,7 +33,7 @@ class TestObject: NSObject, Glossy {
         self.name = "name" <~~ json
         
         let teacher = UserObject()
-        teacher.id = idTeacher
+        teacher.id = "teacherId" <~~ json
         
         self.byTeacher = teacher
         
@@ -43,11 +41,28 @@ class TestObject: NSObject, Glossy {
             self.questions = [QuestionObject].from(jsonArray: questions)
         }
  
+        //For load-test
         if let json: JSON = "result" <~~ json {
-            if let answers = json["answers"] as? [JSON] {
-                self.answers = [AnswerObject].from(jsonArray: answers)
+//            if let answers = json["answers"] as? [JSON] {
+//                self.answers = [AnswerObject].from(jsonArray: answers)
+//            }
+            
+            var arrayResult: [ResultObject] = []
+            
+            if let result = ResultObject(json: json) {
+                arrayResult.append(result)
             }
+            
+            self.results = arrayResult
+            
         }
+        
+        //for get-my-tests
+        if let json: [JSON] = "results" <~~ json {
+            self.results = [ResultObject].from(jsonArray: json)
+        }
+        
+        
     }
     
     func toJSON() -> JSON? {

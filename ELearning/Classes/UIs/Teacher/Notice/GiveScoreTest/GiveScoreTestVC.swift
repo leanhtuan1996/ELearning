@@ -86,16 +86,25 @@ class GiveScoreTestVC: UIViewController {
 
 extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.answers?.count ?? 0
+        
+        guard let results = test.results else {
+            return 0
+        }
+        
+        if results.count == 0 {
+            return 0
+        }
+        
+        return results[0].answers?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell", for: indexPath) as? AnswerCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell", for: indexPath) as? AnswerCell, let results = test.results else {
             return UITableViewCell()
         }
         
         cell.lblName.text = self.test.questions?[indexPath.row].question
-        if self.test.answers?[indexPath.row].score == nil {
+        if results[0].answers?[indexPath.row].score == nil {
             cell.lblStatus.text = "Not graded"
             cell.lblStatus.textColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
         } else {
@@ -108,12 +117,16 @@ extension GiveScoreTestVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if self.test.answers?[indexPath.row].score != nil {
+        guard let results = test.results else {
+            return
+        }
+        
+        if results[0].answers?[indexPath.row].score != nil {
             self.showAlert("This answer has been graded", title: "Error", buttons: nil)
             return
         }
         
-        guard let popup = storyboard?.instantiateViewController(withIdentifier: "PopupGiveScoreVC") as? PopupGiveScoreVC, let answer = self.test.answers?[indexPath.row], let questionName = test.questions?[indexPath.row].question else {
+        guard let popup = storyboard?.instantiateViewController(withIdentifier: "PopupGiveScoreVC") as? PopupGiveScoreVC, let answer = results[0].answers?[indexPath.row], let questionName = test.questions?[indexPath.row].question else {
             print("PopupGiveScore not found")
             return
         }

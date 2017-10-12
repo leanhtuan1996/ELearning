@@ -101,6 +101,28 @@ class TestServices: NSObject {
         }
     }
     
+    func getMyTests(completionHandler: @escaping (_ test: [TestObject]?, _ error: String?) -> Void) {
+        Alamofire.request(UserRouter.getMyTests())
+            .validate()
+            .response { (res) in
+                if let error = res.error {
+                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
+                }
+                
+                guard let data = res.data else {
+                    print("1")
+                    return completionHandler(nil, "Invalid data format")
+                }
+                
+                if let test = [TestObject].from(data: data) {
+                    return completionHandler(test, nil)
+                } else {
+                    print("2")
+                    return completionHandler(nil, "Invalid data format")
+                }
+        }
+    }
+    
     /*
      * FUNCTIONS FOR STUDENTS
      */
@@ -273,26 +295,6 @@ class TestServices: NSObject {
     /*
      * FUNCTIONS FOR TEACHERS
      */
-    
-    func getMyTests(completionHandler: @escaping (_ test: [TestObject]?, _ error: String?) -> Void) {
-        Alamofire.request(TeacherRouter.getMyTests())
-            .validate()
-            .response { (res) in
-                if let error = res.error {
-                    return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
-                }
-                
-                guard let data = res.data else {
-                    return completionHandler(nil, "Invalid data format")
-                }
-                
-                if let test = [TestObject].from(data: data) {
-                    return completionHandler(test, nil)
-                } else {
-                    return completionHandler(nil, "Invalid data format")
-                }
-        }
-    }
     
     func newTest(withTest test: TestObject, completionHandler: @escaping (_ error: String?) -> Void) {
         

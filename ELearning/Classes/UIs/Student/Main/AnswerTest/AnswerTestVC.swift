@@ -63,7 +63,12 @@ class AnswerTestVC: UIViewController {
     }
     
     func isCompleted(withQuestion question: QuestionObject) -> Bool {
-        if let answers = test?.answers, let idQuestion = question.id {
+        
+        guard let results = test?.results else {
+            return false
+        }
+        
+        if let answers = results[0].answers, let idQuestion = question.id {
             if answers.contains(where: { (answer) -> Bool in
                 if let id = answer.questionId {
                     return id == idQuestion
