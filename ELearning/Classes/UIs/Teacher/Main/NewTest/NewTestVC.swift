@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTestVC: UIViewController {
+class NewTestVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var btnDone: UIButton!
     var arrayTextFields: [UITextField] = []
@@ -78,17 +78,16 @@ class NewTestVC: UIViewController {
             txtQuestionName.clearButtonMode = UITextFieldViewMode.whileEditing;
             txtQuestionName.contentVerticalAlignment = UIControlContentVerticalAlignment.center
             txtQuestionName.translatesAutoresizingMaskIntoConstraints = false
+            txtQuestionName.delegate = self
+            txtQuestionName.becomeFirstResponder()
             self.contentView.addSubview(txtQuestionName)
             
             txtQuestionName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
             txtQuestionName.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
             txtQuestionName.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
             txtQuestionName.heightAnchor.constraint(equalToConstant: 45).isActive = true
-            //txtQuestionName.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 50).isActive = true
             self.arrayTextFields.append(txtQuestionName)
-            print(self.contentView.frame.height)
             return
-            
         }
         
         
@@ -106,6 +105,7 @@ class NewTestVC: UIViewController {
         txtQuestionName.clearButtonMode = UITextFieldViewMode.whileEditing;
         txtQuestionName.contentVerticalAlignment = UIControlContentVerticalAlignment.center
         txtQuestionName.translatesAutoresizingMaskIntoConstraints = false
+        txtQuestionName.becomeFirstResponder()
         self.contentView.addSubview(txtQuestionName)
         txtQuestionName.topAnchor.constraint(equalTo: preTxt.topAnchor, constant: 60).isActive = true
         txtQuestionName.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
@@ -156,6 +156,8 @@ class NewTestVC: UIViewController {
     }
 
     @IBAction func btnNewQuestion(_ sender: Any) {
+        
+        
         if arrayTextFields.count != 0 {
             if !arrayTextFields[arrayTextFields.count - 1].hasText {
                 self.showAlert("Please enter name question", title: "Fields are required", buttons: nil)
