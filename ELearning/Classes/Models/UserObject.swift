@@ -9,7 +9,7 @@
 import UIKit
 import Gloss
 
-enum userRole: String {
+enum UserRole: String {
     case teacher = "teacher"
     case student = "student"
 }
@@ -21,7 +21,7 @@ class UserObject: NSObject, NSCoding, Glossy {
     var fullname: String?
     var dob: String?
     var token: String?
-    var role: userRole?
+    var role: UserRole?
     
     override init() { }
     
@@ -38,7 +38,7 @@ class UserObject: NSObject, NSCoding, Glossy {
         self.fullname = "fullname" <~~ json
         self.dob = "birthdate" <~~ json
         if let role: String = "role" <~~ json {
-            self.role = userRole(rawValue: role)
+            self.role = UserRole(rawValue: role)
         }
     }
     
@@ -58,7 +58,7 @@ class UserObject: NSObject, NSCoding, Glossy {
     required init(coder aDecoder: NSCoder) {
         id = aDecoder.decodeObject(forKey: "id") as? String ?? ""
         fullname = aDecoder.decodeObject(forKey: "name") as? String ?? ""
-        role = userRole(rawValue: (aDecoder.decodeObject(forKey: "role") as? String ?? "student"))
+        role = UserRole(rawValue: (aDecoder.decodeObject(forKey: "role") as? String ?? "student"))
         dob = aDecoder.decodeObject(forKey: "dob") as? String ?? ""
         super.init()
     }

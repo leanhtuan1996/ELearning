@@ -67,7 +67,7 @@ class PopupRecordQuestionVC: UIViewController {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0
         UIView.animate(withDuration: 0.1) {
-            self.view.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.view.transform = CGAffineTransform.identity
             self.view.alpha = 1
         }
     }
@@ -87,6 +87,7 @@ class PopupRecordQuestionVC: UIViewController {
                     self.removeFromParentViewController()
                 }
             }
+            
         } else {
             showAlert("You are recording!", title: "error", buttons: nil)
         }
@@ -167,7 +168,7 @@ extension PopupRecordQuestionVC: AVAudioRecorderDelegate, AVAudioPlayerDelegate 
             btnRecord.setTitle("Tap to stop", for: UIControlState.normal)
             timerMeter = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateAudioMeter) , userInfo: nil, repeats: true)
         default:
-            self.showAlert("App can use microphone", title: "error", buttons: nil)
+            self.showAlert("The app can not use your microphone.", title: "The recording failed", buttons: nil)
             break
         }
     }

@@ -16,13 +16,11 @@ class DetailTestVC: UIViewController {
     @IBOutlet weak var viewPopup: UIView!
     @IBOutlet weak var tblQuestions: UITableView!
     
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeAnimate))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewPopup.layer.cornerRadius = 5
         showAnimate()
-        self.view.addGestureRecognizer(tapGesture)
         
         tblQuestions.delegate = self
         tblQuestions.dataSource = self
@@ -88,7 +86,7 @@ class DetailTestVC: UIViewController {
         self.view.alpha = 0.0
         UIView.animate(withDuration: 0.1, animations: {
             self.view.alpha = 1.0
-            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.view.transform = CGAffineTransform.identity
         })
     }
     

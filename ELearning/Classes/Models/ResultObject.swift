@@ -30,7 +30,6 @@ class ResultObject: NSObject, Glossy {
         self.status = "status" <~~ json
         
         if let json: [JSON] = "answers" <~~ json {
-            print(json)
             self.answers = [AnswerObject].from(jsonArray: json)
         }
         

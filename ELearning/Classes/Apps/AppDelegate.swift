@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set token to NSUserDefault & UserNetwork
         UserManager.shared.setToken(user.token)
         
-        switch user.role ?? userRole.student {
+        switch user.role ?? UserRole.student {
         case .teacher:
             showMainViewTeacher()
         case .student:

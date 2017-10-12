@@ -14,6 +14,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var tblTests: UITableView!
     var tests: [TestObject] = []
     var refreshControl = UIRefreshControl()
+    let loading = UIActivityIndicatorView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,8 +24,6 @@ class MainVC: UIViewController {
         tblTests.estimatedRowHeight = 80
         
         //pull to refresh
-        refreshControl = UIRefreshControl()
-        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(loadTests), for: .valueChanged)
         
         tblTests.refreshControl = refreshControl
@@ -53,7 +52,9 @@ class MainVC: UIViewController {
     }
     
     func loadTests() {
+        loading.showLoadingDialog(self)
         TestServices.shared.getTests { (tests, error) in
+            self.loading.stopAnimating()
             if let error = error {
                 print(error)
                 return

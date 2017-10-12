@@ -23,11 +23,6 @@ class AnswerTestVC: UIViewController {
         tblQuestions.estimatedRowHeight = 80
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         

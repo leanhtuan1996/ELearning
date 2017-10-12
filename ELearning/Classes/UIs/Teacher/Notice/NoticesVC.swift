@@ -13,6 +13,7 @@ class NoticesVC: UIViewController {
     @IBOutlet weak var tblNotices: UITableView!
     
     var notices: [NoticeObject] = []
+    let loading = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,9 @@ class NoticesVC: UIViewController {
     }
     
     func loadUnseenNotices() {
+        loading.showLoadingDialog(self)
         NoticeServices.shared.getUnSeenNotices { (notices, error) in
+            self.loading.stopAnimating()
             if let error = error {
                 self.showAlert(error, title: "Get notices has been failed", buttons: nil)
                 return

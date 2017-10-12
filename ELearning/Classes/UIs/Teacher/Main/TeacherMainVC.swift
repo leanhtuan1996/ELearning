@@ -14,6 +14,7 @@ class TeacherMainVC: UIViewController {
     
     var tests: [TestObject] = []
     let loading = UIActivityIndicatorView()
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,10 @@ class TeacherMainVC: UIViewController {
         tblTests.dataSource = self
         tblTests.register(UINib(nibName: "MyTestCell", bundle: nil), forCellReuseIdentifier: "MyTestCell")
         tblTests.estimatedRowHeight = 80
+        tblTests.refreshControl = refreshControl
+        
+        //pull to refresh
+        refreshControl.addTarget(self, action: #selector(loadMyTests), for: .valueChanged)
         
         
         //tabbar
@@ -46,9 +51,8 @@ class TeacherMainVC: UIViewController {
     
     // MARK: - FUNCTIONS
     func loadMyTests() {
-        loading.showLoadingDialog(self)
         TestServices.shared.getMyTests { (tests, error) in
-            self.loading.stopAnimating()
+            self.refreshControl.endRefreshing()
             if let error = error {
                 self.showAlert(error, title: "Error", buttons: nil)
                 return

@@ -157,7 +157,6 @@ class NewTestVC: UIViewController, UITextFieldDelegate {
 
     @IBAction func btnNewQuestion(_ sender: Any) {
         
-        
         if arrayTextFields.count != 0 {
             if !arrayTextFields[arrayTextFields.count - 1].hasText {
                 self.showAlert("Please enter name question", title: "Fields are required", buttons: nil)
