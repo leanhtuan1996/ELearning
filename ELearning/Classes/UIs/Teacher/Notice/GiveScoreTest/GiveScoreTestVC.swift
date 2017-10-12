@@ -36,7 +36,7 @@ class GiveScoreTestVC: UIViewController {
             return
         }
         loading.showLoadingDialog(self)
-        TestServices.shared.loadResult(withStudentId: studentId, withTestId: testId) { (test, error) in
+        NoticeServices.shared.getNotice(withIdStudent: studentId, withIdTest: testId) { (test, error) in
             self.loading.stopAnimating()
             if let error = error {
                 print(error)
@@ -75,11 +75,8 @@ class GiveScoreTestVC: UIViewController {
         }
     }
     
-    func loadAnswerVoice(withFileName path: String) {
-        
-    }
-    
     @IBAction func btnDoneTapped(_ sender: Any) {
+        
         self.navigationController?.popViewController(animated: true)
     }
 }

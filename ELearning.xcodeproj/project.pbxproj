@@ -39,6 +39,13 @@
 		360478671F8F38DC00EC3BD1 /* AnswerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360478661F8F38DC00EC3BD1 /* AnswerObject.swift */; };
 		3604786B1F8F3F5600EC3BD1 /* MyTestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360478691F8F3F5600EC3BD1 /* MyTestCell.swift */; };
 		3604786C1F8F3F5600EC3BD1 /* MyTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3604786A1F8F3F5600EC3BD1 /* MyTestCell.xib */; };
+		3604786E1F8F608E00EC3BD1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3604786D1F8F608E00EC3BD1 /* Settings.storyboard */; };
+		360478731F8F611900EC3BD1 /* UpdatePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360478721F8F611900EC3BD1 /* UpdatePasswordVC.swift */; };
+		360478751F8F612A00EC3BD1 /* UpdateInformationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360478741F8F612A00EC3BD1 /* UpdateInformationsVC.swift */; };
+		360478771F8F632300EC3BD1 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360478761F8F632300EC3BD1 /* SettingsVC.swift */; };
+		3604787B1F8F654F00EC3BD1 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360478791F8F654F00EC3BD1 /* SettingCell.swift */; };
+		3604787C1F8F654F00EC3BD1 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3604787A1F8F654F00EC3BD1 /* SettingCell.xib */; };
+		3604787E1F8F65C300EC3BD1 /* SettingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3604787D1F8F65C300EC3BD1 /* SettingObject.swift */; };
 		367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */; };
 		367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */; };
 		367423171F7E0A0700BBCD88 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367423151F7E0A0700BBCD88 /* SignInUp.storyboard */; };
@@ -97,6 +104,13 @@
 		360478661F8F38DC00EC3BD1 /* AnswerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerObject.swift; sourceTree = "<group>"; };
 		360478691F8F3F5600EC3BD1 /* MyTestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTestCell.swift; sourceTree = "<group>"; };
 		3604786A1F8F3F5600EC3BD1 /* MyTestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTestCell.xib; sourceTree = "<group>"; };
+		3604786D1F8F608E00EC3BD1 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		360478721F8F611900EC3BD1 /* UpdatePasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePasswordVC.swift; sourceTree = "<group>"; };
+		360478741F8F612A00EC3BD1 /* UpdateInformationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInformationsVC.swift; sourceTree = "<group>"; };
+		360478761F8F632300EC3BD1 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		360478791F8F654F00EC3BD1 /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		3604787A1F8F654F00EC3BD1 /* SettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
+		3604787D1F8F65C300EC3BD1 /* SettingObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingObject.swift; sourceTree = "<group>"; };
 		367423121F7E042F00BBCD88 /* Extensions+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIViewController.swift"; sourceTree = "<group>"; };
 		367423141F7E0A0700BBCD88 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		367423151F7E0A0700BBCD88 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
@@ -301,6 +315,42 @@
 			path = MyTestCell;
 			sourceTree = "<group>";
 		};
+		3604786F1F8F60BD00EC3BD1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				360478781F8F653A00EC3BD1 /* SettingCell */,
+				360478711F8F60EC00EC3BD1 /* UpdatePassword */,
+				360478701F8F60DF00EC3BD1 /* UpdateInformations */,
+				360478761F8F632300EC3BD1 /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		360478701F8F60DF00EC3BD1 /* UpdateInformations */ = {
+			isa = PBXGroup;
+			children = (
+				360478741F8F612A00EC3BD1 /* UpdateInformationsVC.swift */,
+			);
+			path = UpdateInformations;
+			sourceTree = "<group>";
+		};
+		360478711F8F60EC00EC3BD1 /* UpdatePassword */ = {
+			isa = PBXGroup;
+			children = (
+				360478721F8F611900EC3BD1 /* UpdatePasswordVC.swift */,
+			);
+			path = UpdatePassword;
+			sourceTree = "<group>";
+		};
+		360478781F8F653A00EC3BD1 /* SettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				360478791F8F654F00EC3BD1 /* SettingCell.swift */,
+				3604787A1F8F654F00EC3BD1 /* SettingCell.xib */,
+			);
+			path = SettingCell;
+			sourceTree = "<group>";
+		};
 		362146B91F7DDC1700D8F7F4 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +363,7 @@
 		362146BA1F7DDC2200D8F7F4 /* UIs */ = {
 			isa = PBXGroup;
 			children = (
+				3604786F1F8F60BD00EC3BD1 /* Settings */,
 				36001AF21F849EA50031A1EE /* Student */,
 				36001AE91F848FE00031A1EE /* Teacher */,
 				368231261F7DE44500AC2995 /* SignIn_Up */,
@@ -339,6 +390,7 @@
 				360415871F8A257500A8794E /* ResultObject.swift */,
 				360415A11F8CEAC600A8794E /* NoticeObject.swift */,
 				360478661F8F38DC00EC3BD1 /* AnswerObject.swift */,
+				3604787D1F8F65C300EC3BD1 /* SettingObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -437,6 +489,7 @@
 				367423151F7E0A0700BBCD88 /* SignInUp.storyboard */,
 				36B2CD8C1F7DDCF200AAE83A /* Main.storyboard */,
 				36001AE71F848AEF0031A1EE /* Teacher.storyboard */,
+				3604786D1F8F608E00EC3BD1 /* Settings.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -541,6 +594,7 @@
 				367423161F7E0A0700BBCD88 /* LaunchScreen.storyboard in Resources */,
 				36B2CD8D1F7DDCF200AAE83A /* Main.storyboard in Resources */,
 				36001AE81F848AEF0031A1EE /* Teacher.storyboard in Resources */,
+				3604786E1F8F608E00EC3BD1 /* Settings.storyboard in Resources */,
 				3604157F1F89FCF000A8794E /* QuestionsCell.xib in Resources */,
 				36EEDAF41F7DDE8300C07497 /* Icons.xcassets in Resources */,
 				3604786C1F8F3F5600EC3BD1 /* MyTestCell.xib in Resources */,
@@ -548,6 +602,7 @@
 				36001AFA1F84D2850031A1EE /* TestCell.xib in Resources */,
 				360415B41F8DF80000A8794E /* AnswerCell.xib in Resources */,
 				360415861F8A225800A8794E /* AnswerQuestionCell.xib in Resources */,
+				3604787C1F8F654F00EC3BD1 /* SettingCell.xib in Resources */,
 				360415AC1F8D01F200A8794E /* NoticeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,7 +673,9 @@
 				360415A41F8CEEB800A8794E /* NoticeServices.swift in Sources */,
 				3604159B1F8C975000A8794E /* TeacherMainVC.swift in Sources */,
 				3682313A1F7DE8EE00AC2995 /* Extensions+String.swift in Sources */,
+				3604787E1F8F65C300EC3BD1 /* SettingObject.swift in Sources */,
 				360415811F8A220800A8794E /* AnswerTestVC.swift in Sources */,
+				360478731F8F611900EC3BD1 /* UpdatePasswordVC.swift in Sources */,
 				368231371F7DE8EE00AC2995 /* Extensions+Date.swift in Sources */,
 				3604158B1F8A2E2B00A8794E /* PopupRecordQuestionVC.swift in Sources */,
 				3682312A1F7DE44500AC2995 /* SignUpVC.swift in Sources */,
@@ -636,6 +693,7 @@
 				368231361F7DE8EE00AC2995 /* Extensions+Data.swift in Sources */,
 				360415B71F8DFA4400A8794E /* PopupGiveScoreVC.swift in Sources */,
 				360415A01F8C9A5400A8794E /* NewTestVC.swift in Sources */,
+				3604787B1F8F654F00EC3BD1 /* SettingCell.swift in Sources */,
 				360415AB1F8D01F200A8794E /* NoticeCell.swift in Sources */,
 				3682313B1F7DE8EE00AC2995 /* Extensions+UIActivityIndicatorView.swift in Sources */,
 				36001AF91F84D2850031A1EE /* TestCell.swift in Sources */,
@@ -647,6 +705,7 @@
 				36EEDAFD1F7DE16E00C07497 /* UserServices.swift in Sources */,
 				368231401F7DE96A00AC2995 /* Helpers.swift in Sources */,
 				368231391F7DE8EE00AC2995 /* Extensions+NSError.swift in Sources */,
+				360478751F8F612A00EC3BD1 /* UpdateInformationsVC.swift in Sources */,
 				36001AFC1F84D82F0031A1EE /* Extensions+Int.swift in Sources */,
 				3682313D1F7DE8EE00AC2995 /* Extensions+UINavigationController.swift in Sources */,
 				360415851F8A225800A8794E /* AnswerQuestionCell.swift in Sources */,
@@ -656,6 +715,7 @@
 				36EEDAF61F7DE0D300C07497 /* UserObject.swift in Sources */,
 				360478671F8F38DC00EC3BD1 /* AnswerObject.swift in Sources */,
 				367423131F7E042F00BBCD88 /* Extensions+UIViewController.swift in Sources */,
+				360478771F8F632300EC3BD1 /* SettingsVC.swift in Sources */,
 				360415A21F8CEAC600A8794E /* NoticeObject.swift in Sources */,
 				36001AE41F8484400031A1EE /* TeacherRouter.swift in Sources */,
 			);

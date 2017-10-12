@@ -83,7 +83,7 @@ class PopupGiveScoreVC: UIViewController {
             self.view.alpha = 0
         }) { (finish) in
             if finish {
-                self.didMove(toParentViewController: self)
+                self.didMove(toParentViewController: self.parent)
                 self.removeFromParentViewController()
                 self.view.removeFromSuperview()
             }

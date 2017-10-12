@@ -302,7 +302,7 @@ class TestServices: NSObject {
             return completionHandler("Try Parse to json has been failed")
         }
         
-        print(testJson)
+        //print(testJson)
         Alamofire.request(TeacherRouter.newTest(testJson))
         .validate()
         .response { (res) in

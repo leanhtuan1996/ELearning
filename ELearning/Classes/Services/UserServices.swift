@@ -64,7 +64,7 @@ class UserServices: NSObject {
                 
                 //login successfully
                 if let userInfo = Helpers.convertObjectToJson(object: userInfoObject) {
-                    print(userInfo)
+                    //print(userInfo)
                     
                     guard let user = UserObject(json: userInfo) else {
                         return completionHandler(nil, "Invalid data format")
@@ -103,7 +103,7 @@ class UserServices: NSObject {
 //            "role" : user.role?.rawValue ?? "student"
 //        ]
         
-        print(parameters)
+        //print(parameters)
         
         Alamofire.request(UserRouter.signUp(parameters))
             .validate()
@@ -297,7 +297,6 @@ class UserServices: NSObject {
                 
                 return completionHandler(user, nil)
         }
-        
     }
 
     
