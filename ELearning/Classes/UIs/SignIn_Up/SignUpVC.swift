@@ -17,6 +17,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtDob: UITextField!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
+    @IBOutlet weak var switchRole: UISwitch!
     
     let appDelegate = UIApplication.shared.delegate
     let activityIndicatorView = UIActivityIndicatorView()
@@ -118,7 +119,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         userObject.password = password
         userObject.dob = dob
         userObject.fullname = fullname
-        userObject.role = UserRole.student
+        
+        if self.switchRole.isOn {
+            userObject.role = UserRole.teacher
+        } else {
+            userObject.role = UserRole.student
+        }        
+        
         UserServices.shared.signUp(with: userObject) { (user, error) in
             self.activityIndicatorView.stopAnimating()
             if let error = error {

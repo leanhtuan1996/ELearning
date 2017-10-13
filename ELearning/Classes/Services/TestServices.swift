@@ -97,6 +97,8 @@ class TestServices: NSObject {
                 return completionHandler(nil, Helpers.handleError(res.response, error: error as NSError))
             }
             
+            
+            
             return completionHandler(res.destinationURL, nil)
         }
     }
