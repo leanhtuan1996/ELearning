@@ -129,7 +129,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         UserServices.shared.signUp(with: userObject) { (user, error) in
             self.activityIndicatorView.stopAnimating()
             if let error = error {
-                self.showAlert(error, title: "Sign In Error", buttons: nil)
+                self.showAlert(error, title: "Sign Up Error", buttons: nil)
                 return
             }
             

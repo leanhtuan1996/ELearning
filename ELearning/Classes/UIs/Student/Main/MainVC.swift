@@ -52,9 +52,7 @@ class MainVC: UIViewController {
     }
     
     func loadTests() {
-        loading.showLoadingDialog(self)
         TestServices.shared.getTests { (tests, error) in
-            self.loading.stopAnimating()
             if let error = error {
                 print(error)
                 return
