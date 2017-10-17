@@ -19,7 +19,6 @@ class PopupRecordQuestionVC: UIViewController {
     var audioRecorder: AVAudioRecorder?
     var timerMeter: Timer?
     let loading = UIActivityIndicatorView()
-    var delegate: TestDataDelegate?
     
     @IBOutlet weak var lblAudioTimer: UILabel!
     @IBOutlet weak var btnRecord: UIButton!

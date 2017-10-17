@@ -34,8 +34,15 @@ class AnswerTestVC: UIViewController {
     
     func loadTest() {
         guard let test = test, let id = test.id else {
+            
+            let returnButton = UIAlertAction(title: "Return", style: UIAlertActionStyle.default, handler: { (btn) in
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            self.showAlert("Id test not found", title: "Error", buttons: [returnButton])
             return
         }
+        
         loading.showLoadingDialog(self)
         TestServices.shared.loadTest(withId: id) { (test, error) in
             self.loading.stopAnimating()
@@ -51,10 +58,6 @@ class AnswerTestVC: UIViewController {
     
     override func willMove(toParentViewController parent: UIViewController?) {
         loadTest()
-    }
-    
-    func pushAnswer() {
-        
     }
     
     func isCompleted(withQuestion question: QuestionObject) -> Bool {
@@ -79,7 +82,7 @@ class AnswerTestVC: UIViewController {
 }
 
 
-extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource, TestDataDelegate {
+extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return test?.questions?.count ?? 0
     }
@@ -120,7 +123,6 @@ extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource, TestDataDele
                 self.addChildViewController(sb)
                 sb.view.frame = self.view.frame
                 self.view.addSubview(sb.view)
-                sb.delegate = self
                 sb.didMove(toParentViewController: self)
                 sb.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
             }
@@ -128,12 +130,4 @@ extension AnswerTestVC: UITableViewDelegate, UITableViewDataSource, TestDataDele
             self.showAlert("This question has been completed!", title: "Error", buttons: nil)
         }
     }
-    
-    func reloadData() {
-       self.loadTest()
-    }
-}
-
-protocol TestDataDelegate {
-    func reloadData() -> Void
 }

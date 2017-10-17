@@ -45,10 +45,15 @@ class DetailTestVC: UIViewController {
     }
     @IBAction func btnJoinTestTapped(_ sender: Any) {
         guard let id = mytest?.id else {
+            self.showAlert("Id test not found", title: "Error", buttons: nil)
             return
         }
         
+        let loading = UIActivityIndicatorView()
+        loading.showLoadingDialog(self)
+        
         TestServices.shared.joinTest(withId: id) { (isJoin, error) in
+            loading.stopAnimating()
             if let error = error {
                 self.showAlert(error, title: "Join this test failed", buttons: nil)
                 return
